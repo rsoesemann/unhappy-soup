@@ -1,5 +1,6 @@
 global class AvoidGlobalModifier {
-	global void unchangeable(Contact c) {
-		delete c;
+
+	global String main(Contact c) {
+		return c.AccountId;
 	}
 }

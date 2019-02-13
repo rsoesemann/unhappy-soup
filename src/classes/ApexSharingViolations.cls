@@ -1,3 +1,6 @@
-public with sharing class ApexSharingViolations {
+public class ApexSharingViolations {
 
+	public void main(Account a) {
+		delete a;
+	}
 }
