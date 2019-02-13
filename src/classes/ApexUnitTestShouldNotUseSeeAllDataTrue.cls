@@ -1,9 +1,12 @@
 @isTest(seeAllData = true)
 public class ApexUnitTestShouldNotUseSeeAllDataTrue {
-	public static testMethod void testSomething() {
-		Account a = null;
-		// This is better than having a NullPointerException
-		// System.assertNotEquals(a, null, 'account not found');
-		a.toString();
+
+	@IsTest
+	public static void main() {
+		Account a = new Account(Name = 'Valid Name');
+		insert a;
+
+		Account inserted = [SELECT Id FROM Account];
+		System.assertNotEquals(a.Id, inserted.Id);
 	}
 }
