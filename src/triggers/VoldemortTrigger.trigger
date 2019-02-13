@@ -1,4 +1,4 @@
-trigger AvoidLogicInTrigger on Account (before insert, before delete) {
+trigger VoldemortTrigger on Account (before insert, before delete) {
 	for(Account acc : Trigger.new) {
 		if(Trigger.isInsert) {
 			acc.addError('not allowed');

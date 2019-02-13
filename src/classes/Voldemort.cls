@@ -1,86 +1,692 @@
 global class Voldemort {
 
-	public Integer UPPERCASE = 10;
-	public static final String lowercase = 'Voldemort';
+	public static final String name = 'Voldemort';
+	public Integer AGE;
+	public Decimal Weight;
+	public String nick_name;
+	public Boolean isBad = true;
+
+
+	// CONSTRUCTORS
 
 	public Voldemort() {
 		delete [SELECT Id FROM Account];
 	}
 
-	public Integer Calculate_Factor(Integer a, Integer b, Integer c, String rate) {
-		Integer result = 0;
 
-		if(a == b) {
-			if(a == c) {
-				if(rate == 'X10')
-					result += 2;
-				else
-					result += 3;
+	public Voldemort(ApexPages.StandardController ctrl) {
+		delete [SELECT Id FROM Account];
+	}
+
+
+	// PUBLIC
+
+	public static Blob badCrypo(String secret) {
+		Blob iv = Blob.valueOf('NameOfMyDog');
+		Blob key = Blob.valueOf('21353we45242');
+
+		System.debug(secret);
+
+		return Crypto.encrypt('AES128', key, iv, Blob.valueOf(secret));
+	}
+
+
+	public static void crudViolation(String id, String email) {
+		Contact c = [SELECT Email FROM Contact WHERE Id = :id];
+		c.Email = email;
+		update c;
+	}
+
+
+	public static void insecureEndpoint() {
+		new HttpRequest().setEndpoint('http://localhost:com');
+	}
+
+
+	public static PageReference openRedirect() {
+		String url = ApexPages.currentPage().getParameters().get('url_param');
+		return new PageReference(url);
+	}
+
+
+	public static Account soqlInjection(Id id) {
+		return (Account) Database.query('SELECT Id FROM Account WHERE Id = ' + id);
+	}
+
+
+	public static void betterUseNamedCredential(String username, String password) {
+		Blob headerValue = Blob.valueOf(username + ':' + password);
+		String authorizationHeader = 'BASIC ' + EncodingUtil.base64Encode(headerValue);
+		new HttpRequest().setHeader('Authorization', authorizationHeader);
+	}
+
+
+	public static void xssFromUrlParam() {
+		String url = ApexPages.currentPage().getParameters().get('url_param');
+		doStuff(url);
+	}
+
+
+	public static void deeplyNestedIf(Integer x, Integer y, Integer z) {
+		if(x>y) {
+			if(y>z) {
+				if(z==x) {
+					Integer space = x * y * z;
+					// ...
+				}
 			}
 		}
+	}
 
-		while(result == 10)
-			result++;
 
-		result += a; result += b;
+	public void dmlInLoops(List<Account> accounts) {
+		for(Account a : accounts) {
+			update a;
+		}
+	}
+
+
+	global String avoidGlobal(Contact c) {
+		return c.AccountId;
+	}
+
+
+	public void avoidHardcodingIds(Account a) {
+		if(a.Id == '012500000009WAr') {
+			a.Description = 'VIP';
+		}
+	}
+
+
+	public void badVariableNaming() {
+		String NAME = 'John';
+		String LastName = 'Mueller';
+		Integer annual_Salary = 100000;
+	}
+
+
+	public void Bad_Method_NAMING() {
+		doStuff(null);
+	}
+
+
+	public void Voldemort() {
+		doStuff(null);
+	}
+
+
+	public Integer soqlInLoops(List<Account> accounts) {
+		Integer result = 0;
+
+		for(Account a : accounts) {
+			Integer contacts = [SELECT Count() FROM Contact WHERE AccountId = :a.Id];
+			result += contacts;
+		}
 
 		return result;
 	}
 
 
-	public void remove(List<Contact> contacts) {
+	public void soslInLoops() {
+		for(Integer i = 0; i < 10; i++) {
+			List<List<SObject>> searchList = [FIND 'map*' IN ALL FIELDS RETURNING Account (Id, Name), Contact, Lead];
+		}
+	}
+
+	public void addPerson(Integer birthYear, Integer birthMonth, Integer birthDate, Integer height, Integer weight) {
+		Contact c = new Contact(Birthdate=Date.newInstance(birthYear, birthMonth, birthDate));
+	}
+
+
+	public void cyclomaticComplexity(Integer z) {
+		if(age == Weight || (Weight == age && z == weight)) {
+			if(age == z) {
+				doStuff(Weight);
+			}
+			else if(z == weight) {
+				doStuff(Weight);
+			}
+			else {
+				doStuff(weight);
+			}
+		}
+		else if(z == weight) {
+			while(age == weight) {
+				doStuff(age);
+			}
+		}
+		else if(age == z) {
+			for(Integer n = 0; n < age; n++) {
+				doStuff(Weight + n);
+			}
+		}
+		else {
+			switch on z {
+				when 1 {
+					doStuff(z);
+				}
+				when 3 {
+					doStuff(z + 2);
+				}
+				when else {
+					doStuff(0);
+				}
+			}
+		}
+	}
+
+
+	public void emptyId(Contact c) {
+		if(c.Id == null) {
+
+		}
+		else {
+			delete c;
+		}
+	}
+
+
+	public void emptyCatch(Account a) {
 		try {
-			for(Contact c : contacts)
-				if(c.Id != 'a2R1T0000034g7tUAA') {
-					c.Email = '';
-					update c;
-				}
-				else {
-					delete c;
-				}
+			delete a;
 		}
-		catch(Exception ignored) {
-			// TODO maybe display toast in UI
+		catch(Exception ex) {
+			// ignored
 		}
 	}
 
 
-	public void foo() {
-		bar();
+	public void emptyBlock() {
+
 	}
 
 
-	public void bar() {
-		foo();
+	public void emptyTryOrFinally(Account a) {
+		try {
+			delete a;
+		}
+		catch(Exception ex) {
+			System.debug(LoggingLevel.ERROR, ex);
+		}
+		finally {
+
+		}
 	}
 
 
-	public void foo(Integer i) {
-		bar();
+	public Integer emptyWhile(Integer i) {
+		while(i++>1000) {
+
+		}
+
+		return i;
 	}
 
 
-	public void bar(Integer i) {
-		foo();
+	public void forWithoutBraces(List<Contact> contacts) {
+		for(Contact c : contacts)
+			c.Account = null;
+
+		update contacts;
 	}
 
 
-	public void foo(Boolean i) {
-		bar(4);
+	public void ifWithoutBraces(Account a) {
+		if(a.Name == 'Acme')
+			delete a;
 	}
 
 
-	public void bar(Decimal i) {
-		foo();
+	public void elseWithoutBraces(Account a) {
+		if(a.Name != 'Acme') {
+			a.Name += ' (approved)';
+		}
+		else
+			delete a;
 	}
 
 
-	public void foo(Decimal i) {
-		bar(false);
+	public void whileWithoutBraces(List<Account> accounts) {
+		Integer count = 0;
+
+		while(count < 10)
+			accounts[count].Description = 'Lottery Price';
+		count++;
 	}
 
 
-	public void bar(Boolean i) {
-		foo(3);
+	public void oneDeclarationPerLine(Contact c, Account a) {
+		String first, last = 'X';
+	}
+
+
+	// PRIVATE
+
+	public static void doStuff(Object o) {
+		exessiveLength(2);
+	}
+
+
+	public static void exessiveLength(Integer x) {
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+		x++;
+
+		x++;
+	}
+
+
+	// INNER
+
+	public class badClass_Naming {
+		public void doStuff(Account a) {
+			delete a;
+		}
 	}
 }
