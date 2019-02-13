@@ -1,9 +1,13 @@
 public with sharing class AvoidDeeplyNestedIfStmts {
-	public void main() {
-		for (Integer i = 0; i < 151; i++) {
-			Account account;
-			// ...
-			insert account;
+
+	public void coords(Integer x, Integer y, Integer z) {
+		if(x>y) {
+			if(y>z) {
+				if(z==x) {
+					Integer space = x * y * z;
+					// ...
+				}
+			}
 		}
 	}
 }

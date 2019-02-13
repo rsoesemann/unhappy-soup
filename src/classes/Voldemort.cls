@@ -46,41 +46,41 @@ global class Voldemort {
 
 
 	public void foo() {
-		// ..
+		bar();
 	}
 
 
 	public void bar() {
-		// ..
+		foo();
 	}
 
 
 	public void foo(Integer i) {
-		// ..
+		bar();
 	}
 
 
 	public void bar(Integer i) {
-		// ..
+		foo();
 	}
 
 
-	public void foo(Integer i) {
-		// ..
+	public void foo(Boolean i) {
+		bar(4);
 	}
 
 
 	public void bar(Decimal i) {
-		// ..
+		foo();
 	}
 
 
 	public void foo(Decimal i) {
-		// ..
+		bar(false);
 	}
 
 
 	public void bar(Boolean i) {
-		// ..
+		foo(3);
 	}
 }

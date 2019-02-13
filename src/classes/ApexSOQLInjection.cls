@@ -1,6 +1,6 @@
 public class ApexSOQLInjection {
 
-	public void remove(Id id) {
-		delete [SELECT Id FROM Contact WHERE Id = :id];
+	public Account main(Id id) {
+		return (Account) Database.query('SELECT Id FROM Account WHERE Id = ' + id);
 	}
 }
