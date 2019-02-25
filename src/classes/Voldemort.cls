@@ -1,6 +1,6 @@
 global class Voldemort {
 
-	public static final String name = 'Voldemort';
+	public static final String NAME = 'Voldemort';
 	public Integer AGE;
 	public Decimal Weight;
 	public String nick_name;
