@@ -1,4 +1,4 @@
-global class Voldemort {
+public with sharing class Voldemort {
 
 	public static final String NAME = 'Voldemort';
 	public Integer AGE;
@@ -83,11 +83,6 @@ global class Voldemort {
 		for(Account a : accounts) {
 			update a;
 		}
-	}
-
-
-	global String avoidGlobal(Contact c) {
-		return c.AccountId;
 	}
 
 
