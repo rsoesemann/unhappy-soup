@@ -1,4 +1,4 @@
-public with sharing class Voldemort {
+global class Voldemort {
 
 	public static final String NAME = 'Voldemort';
 	public Integer AGE;
