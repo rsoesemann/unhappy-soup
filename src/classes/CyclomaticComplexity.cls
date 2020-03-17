@@ -28,7 +28,7 @@ public with sharing class CyclomaticComplexity {
 				when 1 {
 					main(z);
 				}
-				when 3 {
+				when 2 {
 					main(z + 2);
 				}
 				when else {
