@@ -1,18 +1,38 @@
 public with sharing class CognitiveComplexity {
 
-    public Integer sumOfPrimes(Integer max) {        // +1
-        Integer total = 0;
+    // Has a cognitive complexity of 0
+    public void createAccount() {
+        Account account = new Account(Name = 'PMD');
+        insert account;
+    }
 
-        for(Integer i=1; i<max; i++) {               // +1
-            for(Integer j=1; i<j; j++) {             // +1
-                if(Math.mod(i, j) == 0) {            // +1
-                    continue;
-                }
-            }
 
-            total += i;
+    // Has a cognitive complexity of 1
+    public Boolean setPhoneNumberIfNotExisting(Account a, String phone) {
+        if (a.Phone == null) {                          // +1
+            a.Phone = phone;
+            update a;
+
+            return true;
         }
 
-        return total;
+        return false;
+    }
+
+    // Has a cognitive complexity of 5
+    public void updateContacts(List<Contact> contacts) {
+        List<Contact> contactsToUpdate = new List<Contact>();
+
+        for (Contact contact : contacts) {                           // +1
+            if (contact.Department == 'Finance') {                   // +2
+                contact.Title = 'Finance Specialist';
+                contactsToUpdate.add(contact);
+            } else if (contact.Department == 'Sales') {              // +2
+                contact.Title = 'Sales Specialist';
+                contactsToUpdate.add(contact);
+            }
+        }
+
+        update contactsToUpdate;
     }
 }
