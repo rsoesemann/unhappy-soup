@@ -133,7 +133,7 @@ global class Voldemort {
 	}
 
 
-	public void cyclomaticComplexity(Integer z) {
+	public void complexity(Integer z) {
 		if(age == Weight || (Weight == age && z == weight)) {
 			if(age == z) {
 				doStuff(Weight);
