@@ -8,4 +8,11 @@
     <rule ref="category/apex/bestpractices.xml" />
     <rule ref="category/apex/errorprone.xml" />
 
+    <rule ref="category/apex/design.xml/CyclomaticComplexity">
+        <properties>
+            <property name="classReportLevel" value="40" />
+            <property name="methodReportLevel" value="5" />
+        </properties>
+    </rule>
+
 </ruleset>
