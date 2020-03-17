@@ -4,7 +4,8 @@ public with sharing class IfElseStmtsMustUseBraces {
 		if(a.Name != 'Acme') {
 			a.Name += ' (approved)';
 		}
-		else
+		else {
 			delete a;
+		}
 	}
 }
