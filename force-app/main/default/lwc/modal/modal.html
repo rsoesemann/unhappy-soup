@@ -1,0 +1,25 @@
+<template>
+    <template if:true={showModal}>
+        <section role="dialog" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container modal-container">
+                <header class="slds-modal__header hidden-header">
+                    <lightning-button-icon class="slds-modal__close" title="Close" icon-name="utility:close" variant="bare"
+                        icon-class="slds-button__icon slds-button__icon_large slds-button_icon-inverse" onclick={notifyParentOnClose}></lightning-button-icon>                    
+                </header>
+
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        <h2 class="inlineTitle slds-p-horizontal--medium slds-p-bottom--medium slds-text-heading--medium modal-header">
+                            {header}
+                        </h2>
+                    <slot></slot>
+                </div>
+
+                <footer class="slds-modal__footer modal-hidden">
+                    <slot name="footer" onslotchange={handleSlotFooterChange}></slot>
+                </footer>
+            </div>
+        </section>
+
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>
