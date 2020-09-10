@@ -1,0 +1,22 @@
+{
+  "name": "sfprojecttemplate",
+  "version": "1.0.0",
+  "description": "_This is the mandatory Bitbucket repo for ALL Salesforce projects at logicline. [Please read this wikipage](https://confluence.logicline.de/pages/viewpage.action?pageId=85598751) to learn how to use it properly._",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "@salesforce/sfdx-lwc-jest": "^0.7.0"
+  },
+  "scripts": {
+    "test:unit": "sfdx-lwc-jest -- --json --passWithNoTests > temp.json | cat temp.json",
+    "test:unit:watch": "sfdx-lwc-jest --watch",
+    "test:unit:debug": "sfdx-lwc-jest --debug"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://anmollogicline@bitbucket.org/logicline/sfprojecttemplate.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/logicline/sfprojecttemplate#readme"
+}

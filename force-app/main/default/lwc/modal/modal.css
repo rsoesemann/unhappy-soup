@@ -1,0 +1,17 @@
+.modal-hidden {
+    display: none;
+}
+
+.hidden-header{
+    padding: .25rem;
+    border-bottom: none;
+}
+
+.modal-header{
+    text-align: center;
+    border-bottom: 1px solid var(--lwc-colorBorder,rgb(221, 219, 218));
+}
+
+.modal-container{
+    max-width: 52rem;
+}
