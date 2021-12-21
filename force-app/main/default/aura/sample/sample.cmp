@@ -1,4 +1,0 @@
-<aura:component controller="SampleCtrl" implements="force:lightningQuickActionWithoutHeader,force:hasRecordId">
-
-
-</aura:component>
