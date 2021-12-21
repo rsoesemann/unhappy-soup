@@ -211,5 +211,3 @@ public with sharing class NcssMethodCount {
 		x++;
 	}
 }
-
-}
