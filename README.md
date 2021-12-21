@@ -1,1 +1,0 @@
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/f509804bd1a145408dee639c0accb919)](https://www.codacy.com/manual/rsoesemann/unhappy-soup?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=rsoesemann/unhappy-soup&amp;utm_campaign=Badge_Grade)
