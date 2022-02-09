@@ -40,12 +40,40 @@
     <!-- CUSTOM SF METADATA RULES -->
 
     <rule name="NoUnderscoresInFieldNames" language="xml" message="Custom fields should not contain underscores." class="net.sourceforge.pmd.lang.rule.XPathRule">
-        <priority>3</priority>
         <properties>
             <property name="version" value="2.0"></property>
             <property name="xpath">
                 <value><![CDATA[
                     //CustomField/fullName/text[matches(@Image, ".*_.*__c")]
+                ]]></value>
+            </property>
+        </properties>
+    </rule>
+
+    <rule name="CustomFieldNamingConvention" language="xml" message="Incorrectly named field" class="net.sourceforge.pmd.lang.rule.XPathRule">
+        <properties>
+            <property name="version" value="2.0"/>
+            <property name="xpath">
+                <value><![CDATA[
+//CustomField[
+     (fullName/text[not(matches(@Image, "chk_([A-Z][a-z0-9]+)+__c"))] and type/text[@Image="Checkbox"]) or
+     (fullName/text[not(matches(@Image, "txt_([A-Z][a-z0-9]+)+__c"))] and type/text[@Image="Text"]) or
+     (fullName/text[not(matches(@Image, "txa_([A-Z][a-z0-9]+)+__c"))] and type/text[@Image="Textarea"]) or
+     (fullName/text[not(matches(@Image, "txr_([A-Z][a-z0-9]+)+__c"))] and type/text[@Image="Richtext"]) or
+     (fullName/text[not(matches(@Image, "txl_([A-Z][a-z0-9]+)+__c"))] and type/text[@Image="LongTextArea"]) or
+     (fullName/text[not(matches(@Image, "num_([A-Z][a-z0-9]+)+__c"))] and type/text[@Image="Number"]) or
+     (fullName/text[not(matches(@Image, "dat_([A-Z][a-z0-9]+)+__c"))] and type/text[@Image="Date"]) or
+     (fullName/text[not(matches(@Image, "lkp_([A-Z][a-z0-9]+)+__c"))] and type/text[@Image="Lookup"]) or
+     (fullName/text[not(matches(@Image, "mdr_([A-Z][a-z0-9]+)+__c"))] and type/text[@Image="MasterDetail"]) or
+     (fullName/text[not(matches(@Image, "dtm_([A-Z][a-z0-9]+)+__c"))] and type/text[@Image="DateTime"]) or
+     (fullName/text[not(matches(@Image, "url_([A-Z][a-z0-9]+)+__c"))] and type/text[@Image="Url"]) or
+     (fullName/text[not(matches(@Image, "pkl_([A-Z][a-z0-9]+)+__c"))] and type/text[@Image="Picklist"]) or
+     (fullName/text[not(matches(@Image, "pkm_([A-Z][a-z0-9]+)+__c"))] and type/text[@Image="MultiselectPicklist"]) or
+     (fullName/text[not(matches(@Image, "cur_([A-Z][a-z0-9]+)+__c"))] and type/text[@Image="Currency"]) or
+     (fullName/text[not(matches(@Image, "pct_([A-Z][a-z0-9]+)+__c"))] and type/text[@Image="Percent"]) or
+     (fullName/text[not(matches(@Image, "fcur_([A-Z][a-z0-9]+)+__c"))] and type/text[@Image="Currency"] and formula) or
+     (fullName/text[not(matches(@Image, "rcnt_([A-Z][a-z0-9]+)+__c"))] and type/text[@Image="Summary"] and summaryOperation/text[@Image="count"]) 
+]
                 ]]></value>
             </property>
         </properties>
