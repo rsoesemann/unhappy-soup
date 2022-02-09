@@ -23,11 +23,7 @@
 
     <!-- CUSTOM APEX RULES -->
 
-    <rule name="AvoidProductionDebugLogs"
-          language="apex"
-          message="Avoid leaving System.debug() statments in code as they negativly influence performance."
-          class="net.sourceforge.pmd.lang.apex.rule.ApexXPathRule">
-
+    <rule name="AvoidProductionDebugLogs" language="apex" message="Avoid leaving System.debug() statments in code as they negativly influence performance." class="net.sourceforge.pmd.lang.apex.rule.ApexXPathRule">
         <priority>3</priority>
         <properties>
             <property name="xpath">
@@ -43,9 +39,10 @@
 
     <!-- CUSTOM SF METADATA RULES -->
 
-    <rule name="NoUnderscoresInFieldNames" language="xml" class="net.sourceforge.pmd.lang.rule.XPathRule" message="Custom fields should not contain underscores."  >
+    <rule name="NoUnderscoresInFieldNames" language="xml" message="Custom fields should not contain underscores." class="net.sourceforge.pmd.lang.rule.XPathRule">
         <priority>3</priority>
         <properties>
+            <property name="version" value="2.0"></property>
             <property name="xpath">
                 <value><![CDATA[
                     //CustomField/fullName/text[matches(@Image, ".*_.*__c")]
@@ -54,10 +51,8 @@
         </properties>
     </rule>
 
-    <rule class="net.sourceforge.pmd.lang.rule.XPathRule" language="xml" message="It is a high security risk for any profile to have &quot;No Restriction&quot; as the password complexity requirement." name="a0H5g000002bou5EAA">
-        <description>Password Policies: Complexity Requirement</description>
+    <rule name="UnrestrictedPasswordPolicy" language="xml" message="It is a high security risk for any profile to have &quot;No Restriction&quot; as the password complexity requirement." class="net.sourceforge.pmd.lang.rule.XPathRule">
         <priority>3</priority>
-        
         <properties>
             <property name="version" value="2.0"></property>
             <property name="xpath">
@@ -68,10 +63,8 @@
         </properties>
     </rule>
 
-    <rule class="net.sourceforge.pmd.lang.rule.XPathRule" language="xml" message="The default value for the password length is 8 characters. Less than 8 characters is not secure." name="a0H5g000002bou6EAA">
-        <description>Password Policies: Minimum Length</description>
+    <rule name="TooShortPasswordPolicy" language="xml" message="The default value for the password length is 8 characters. Less than 8 characters is not secure." class="net.sourceforge.pmd.lang.rule.XPathRule">
         <priority>3</priority>
-        
         <properties>
             <property name="version" value="2.0"></property>
             <property name="xpath">
@@ -82,10 +75,8 @@
         </properties>
     </rule>
 
-    <rule class="net.sourceforge.pmd.lang.rule.XPathRule" language="xml" message="Only Admins can view and modify all data, if any other profile get these permissions, they could manipulate records that shouldn't" name="a0H5g000002bou7EAA">
-        <description>Modify View All Data for System Admin Profile Only</description>
+    <rule name="ModifyAllOnSysAdminProfile" language="xml" message="Only Admins can view and modify all data, if any other profile get these permissions, they could manipulate records that shouldn't" class="net.sourceforge.pmd.lang.rule.XPathRule">
         <priority>3</priority>
-        
         <properties>
             <property name="version" value="2.0"></property>
             <property name="xpath">
@@ -96,10 +87,8 @@
         </properties>
     </rule>
 
-    <rule class="net.sourceforge.pmd.lang.rule.XPathRule" language="xml" message="Allowing this user permission can give access and ability to modify sensitive data." name="a0H5g000002bou8EAA">
-        <description>ModifyAllData in Permission Sets</description>
+    <rule name="ModifyAllOnPermSet" language="xml" message="Allowing this user permission can give access and ability to modify sensitive data." class="net.sourceforge.pmd.lang.rule.XPathRule">
         <priority>3</priority>
-        
         <properties>
             <property name="version" value="2.0"></property>
             <property name="xpath">
@@ -110,10 +99,8 @@
         </properties>
     </rule>
 
-    <rule class="net.sourceforge.pmd.lang.rule.XPathRule" language="xml" message="Allowing this user permission can give access to sensitive data." name="a0H5g000002bou9EAA">
-        <description>ViewAllData in Permission Set</description>
+    <rule name="ViewAllOnPermSet" language="xml" message="Allowing this user permission can give access to sensitive data." class="net.sourceforge.pmd.lang.rule.XPathRule">
         <priority>3</priority>
-        
         <properties>
             <property name="version" value="2.0"></property>
             <property name="xpath">
@@ -124,24 +111,20 @@
         </properties>
     </rule>
 
-    <rule class="net.sourceforge.pmd.lang.rule.XPathRule" language="xml" message="Due to HR policies, managing users need to be limited to System Administrator Profile only." name="a0H5g000002bouAEAQ">
-        <description>Manage Users for System Administrator Profile Only</description>
+    <rule name="ManageUsersByNonSysAdmins" language="xml" message="Managing users need to be limited to System Administrator Profile only." class="net.sourceforge.pmd.lang.rule.XPathRule">
         <priority>3</priority>
-        
         <properties>
             <property name="version" value="2.0"></property>
             <property name="xpath">
                 <value><![CDATA[
-                //Profile[ pmd:fileName()!='System Administrator123' and userPermissions/name/text[@Image='ManageUsers'] ]
+                //Profile[ pmd:fileName()!='System Administrator' and userPermissions/name/text[@Image='ManageUsers'] ]
                 ]]> </value>
             </property>
         </properties>
     </rule>
 
-    <rule class="net.sourceforge.pmd.lang.rule.XPathRule" language="xml" message="Allowing access to an inactive session for more than 12 hours is a security risk." name="a0H5g000002bouBEAQ">
-        <description>Session Settings: Timeout</description>
+    <rule name="TooLongSessionTimeout" language="xml" message="Allowing access to an inactive session for more than 12 hours is a security risk." class="net.sourceforge.pmd.lang.rule.XPathRule">
         <priority>3</priority>
-        
         <properties>
             <property name="version" value="2.0"></property>
             <property name="xpath">
@@ -152,10 +135,8 @@
         </properties>
     </rule>
 
-    <rule class="net.sourceforge.pmd.lang.rule.XPathRule" language="xml" message="Passwords need to expire every 90 days for security." name="a0H5g000002bouCEAQ">
-        <description>Password Policies: Expiration</description>
+    <rule name="PasswordsNeverExpire" language="xml" message="Passwords need to expire every 90 days for security." class="net.sourceforge.pmd.lang.rule.XPathRule">
         <priority>3</priority>
-        
         <properties>
             <property name="version" value="2.0"></property>
             <property name="xpath">
@@ -166,29 +147,13 @@
         </properties>
     </rule>
 
-    <rule class="net.sourceforge.pmd.lang.rule.XPathRule" language="xml" message="Exposing the setup menu to non-authorized users." name="a0H5g000002bouDEAQ">
-        <description>ViewSetup is restricted to Sys Admin</description>
+    <rule name="ViewSetupByNonSysAdmins" language="xml" message="Exposing the setup menu to non-authorized users." class="net.sourceforge.pmd.lang.rule.XPathRule">
         <priority>3</priority>
-        
         <properties>
             <property name="version" value="2.0"></property>
             <property name="xpath">
                 <value><![CDATA[
                 //Profile[ pmd:fileName()!='System Administrator' and userPermissions/enabled/text[@Image='true'] and userPermissions/name/text[@Image='ViewSetup'] ]
-                ]]> </value>
-            </property>
-        </properties>
-    </rule>
-
-    <rule class="net.sourceforge.pmd.lang.rule.XPathRule" language="xml" message="Accounts are only managed by admin, of any other permission set has it account information could leak" name="a0H5g000002bouEEAQ">
-        <description>Account Object CRUD Restricted to Admin PermSet</description>
-        <priority>3</priority>
-        
-        <properties>
-            <property name="version" value="2.0"></property>
-            <property name="xpath">
-                <value><![CDATA[
-                //PermissionSet[ pmd:fileName()!='Admin' and (objectPermissions/allowCreate/text[@Image='true'] or objectPermissions/allowDelete/text[@Image='true'] or objectPermissions/allowEdit/text[@Image='true'] or objectPermissions/allowRead/text[@Image='true']) and objectPermissions/object/text[@Image='Account'] ]
                 ]]> </value>
             </property>
         </properties>
