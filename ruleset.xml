@@ -3,7 +3,6 @@
     
     <description>Default ruleset for PMD</description>
 
-
     <!-- STANDARD RULES -->
     <rule ref="category/apex/security.xml">
         <priority>1</priority>
