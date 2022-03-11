@@ -84,7 +84,7 @@
             <property name="version" value="2.0"></property>
             <property name="xpath">
                 <value><![CDATA[
-                //SecuritySettings[ passwordPolicies/complexity/text[@Image='No restriction'] ]
+                //SecuritySettings/passwordPolicies/complexity[ text[@Image='No restriction'] ]
                 ]]> </value>
             </property>
         </properties>
@@ -96,7 +96,7 @@
             <property name="version" value="2.0"></property>
             <property name="xpath">
                 <value><![CDATA[
-                //SecuritySettings[ passwordPolicies/minimumPasswordLength/text[@Image<'8'] ]
+                //SecuritySettings/passwordPolicies/minimumPasswordLength[ text[@Image<'8'] ]
                 ]]> </value>
             </property>
         </properties>
@@ -108,7 +108,7 @@
             <property name="version" value="2.0"></property>
             <property name="xpath">
                 <value><![CDATA[
-                //Profile[ (userPermissions/name/text[@Image='ModifyAllData'] or userPermissions/name/text[@Image='ViewAllData']) and pmd:fileName()!='System Administrator' and userPermissions/enabled/text[@Image='true'] ]
+                //Profile/userPermissions[ name/text[@Image='ModifyAllData' or @Image='ViewAllData'] and enabled/text[@Image='true'] and pmd:fileName() != 'System Administrator' ]
                 ]]> </value>
             </property>
         </properties>
@@ -120,7 +120,7 @@
             <property name="version" value="2.0"></property>
             <property name="xpath">
                 <value><![CDATA[
-                //PermissionSet[ userPermissions/name/text[@Image='ModifyAllData'] and userPermissions/enabled/text[@Image='true'] ]
+                //PermissionSet/userPermissions[ name/text[@Image='ModifyAllData'] and enabled/text[@Image='true'] ]
                 ]]> </value>
             </property>
         </properties>
@@ -132,7 +132,7 @@
             <property name="version" value="2.0"></property>
             <property name="xpath">
                 <value><![CDATA[
-                //PermissionSet[ userPermissions/name/text[@Image='ViewAllData'] and userPermissions/enabled/text[@Image='true'] ]
+                //PermissionSet/userPermissions[ name/text[@Image='ViewAllData'] and enabled/text[@Image='true'] ]
                 ]]> </value>
             </property>
         </properties>
@@ -144,7 +144,7 @@
             <property name="version" value="2.0"></property>
             <property name="xpath">
                 <value><![CDATA[
-                //Profile[ pmd:fileName()!='System Administrator' and userPermissions/name/text[@Image='ManageUsers'] ]
+                //Profile/userPermissions[ pmd:fileName() != 'System Administrator' and name/text[@Image='ManageUsers'] ]
                 ]]> </value>
             </property>
         </properties>
@@ -156,7 +156,7 @@
             <property name="version" value="2.0"></property>
             <property name="xpath">
                 <value><![CDATA[
-                //SecuritySettings[ sessionSettings/sessionTimeout/text[@Image='24 hours of inactivity'] or sessionSettings/sessionTimeout/text[@Image='12 hours of inactivity'] ]
+                //SecuritySettings/sessionTimeout[ text[@Image='24 hours of inactivity'] or text[@Image='12 hours of inactivity'] ]
                 ]]> </value>
             </property>
         </properties>
@@ -168,7 +168,7 @@
             <property name="version" value="2.0"></property>
             <property name="xpath">
                 <value><![CDATA[
-                //SecuritySettings[ passwordPolicies/expiration/text[@Image='Never'] or passwordPolicies/expiration/text[@Image='SixMonths'] or passwordPolicies/expiration/text[@Image='OneYear'] ]
+                //SecuritySettings/passwordPolicies/expiration[ text[@Image='Never'] or text[@Image='SixMonths'] or text[@Image='OneYear'] ]
                 ]]> </value>
             </property>
         </properties>
@@ -180,7 +180,7 @@
             <property name="version" value="2.0"></property>
             <property name="xpath">
                 <value><![CDATA[
-                //Profile[ pmd:fileName()!='System Administrator' and userPermissions/enabled/text[@Image='true'] and userPermissions/name/text[@Image='ViewSetup'] ]
+                //Profile/userPermissions[ pmd:fileName() != 'System Administrator' and enabled/text[@Image='true'] and name/text[@Image='ViewSetup'] ]
                 ]]> </value>
             </property>
         </properties>
