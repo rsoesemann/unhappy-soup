@@ -1,39 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ruleset xmlns="http://pmd.sourceforge.net/ruleset/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="My ruleset for Salesforce.com Apex" xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 https://pmd.sourceforge.io/ruleset_2_0_0.xsd">
-    
-    <description>Default ruleset for PMD</description>
+<ruleset xmlns="http://pmd.sourceforge.net/ruleset/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Custom ruleset for XML" xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 https://pmd.sourceforge.io/ruleset_2_0_0.xsd">
 
-    <!-- STANDARD RULES -->
-    <rule ref="category/apex/security.xml">
-        <priority>1</priority>
-    </rule>
-    <rule ref="category/apex/design.xml" />
-    <rule ref="category/apex/performance.xml">
-        <exclude name="AvoidDebugStatements" />
-    </rule>
-    <rule ref="category/apex/codestyle.xml" />
-    <rule ref="category/apex/bestpractices.xml">
-        <exclude name="ApexAssertionsShouldIncludeMessage" />
-    </rule>
-    <rule ref="category/apex/documentation.xml">
-        <exclude name="ApexDoc"/>
-    </rule>
-
-
-    <!-- CUSTOM APEX RULES -->
-
-    <rule name="AvoidProductionDebugLogs" language="apex" message="Avoid leaving System.debug() statments in code as they negativly influence performance." class="net.sourceforge.pmd.lang.apex.rule.ApexXPathRule">
-        <priority>3</priority>
-        <properties>
-            <property name="xpath">
-                <value>
-                    <![CDATA[
-                        //MethodCallExpression[@FullMethodName='System.debug'][count(*)=2]
-                    ]]>
-                </value>
-            </property>
-        </properties>
-    </rule>
+    <description>Custom XML rules for PMD</description>
 
 
     <!-- CUSTOM SF METADATA RULES -->
@@ -71,7 +39,7 @@
      (fullName/text[not(matches(@Image, "cur_([A-Z][a-z0-9]+)+__c"))] and type/text[@Image="Currency"]) or
      (fullName/text[not(matches(@Image, "pct_([A-Z][a-z0-9]+)+__c"))] and type/text[@Image="Percent"]) or
      (fullName/text[not(matches(@Image, "fcur_([A-Z][a-z0-9]+)+__c"))] and type/text[@Image="Currency"] and formula) or
-     (fullName/text[not(matches(@Image, "rcnt_([A-Z][a-z0-9]+)+__c"))] and type/text[@Image="Summary"] and summaryOperation/text[@Image="count"]) 
+     (fullName/text[not(matches(@Image, "rcnt_([A-Z][a-z0-9]+)+__c"))] and type/text[@Image="Summary"] and summaryOperation/text[@Image="count"])
 ]
                 ]]></value>
             </property>
