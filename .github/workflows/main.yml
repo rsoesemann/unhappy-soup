@@ -18,6 +18,6 @@ jobs:
         uses: mitchspano/sfdx-scan-pull-request@v0.1.7
         with:
           severity-threshold: 4
-          pmdconfig: pmd/standard-ruleset.xml
+          pmdconfig: pmd/ruleset.xml
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

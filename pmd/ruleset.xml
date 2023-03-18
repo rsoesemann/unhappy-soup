@@ -40,4 +40,7 @@
             <property name="mergeAuthMethodPattern" value="AuthorizationUtil\.(is|assert)Mergeable"/>
         </properties>
     </rule>
+
+    <rule ref="pmd/category/apex/custom.xml"/>
+    <rule ref="pmd/category/xml/custom.xml"/>
 </ruleset>
