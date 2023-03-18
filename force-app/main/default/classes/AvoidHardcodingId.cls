@@ -6,4 +6,8 @@ public with sharing class AvoidHardcodingId {
 			// ...
 		}
 	}
+	
+	public void foo() {
+		insert new Custom__c(Id__c = '012500000009WAr');
+	}
 }
