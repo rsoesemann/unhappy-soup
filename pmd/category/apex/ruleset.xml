@@ -1,0 +1,117 @@
+<?xml version="1.0" ?>
+<ruleset name="Default Apex" xmlns="http://pmd.sourceforge.net/ruleset/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 https://pmd.sourceforge.io/ruleset_2_0_0.xsd">
+
+    <description>Default Apex ruleset</description>
+
+    <rule
+        name="AvoidAqSoqlWithoutSecurityEnforced"
+        language="apex"
+        message="Avoid AqSoql Without SecurityEnforced"
+        class="net.sourceforge.pmd.lang.rule.XPathRule"
+    >
+        <priority>2</priority>
+        <properties>
+            <property name="version" value="2.0" />
+            <property name="xpath">
+                <value>
+                    <![CDATA[
+        //UserClass[not(contains(lower-case(@Image), 'test'))]
+        //VariableDeclaration[lower-case(@Type)='aqsoql']
+            //MethodCallExpression[lower-case(@MethodName)='withoutsecurityenforced']
+        |//UserClass[not(contains(lower-case(@Image), 'test'))]
+        //MethodCallExpression[lower-case(@MethodName)='withoutsecurityenforced']
+            //ReferenceExpression[not(@Image='') 
+                and lower-case(@Image)=//VariableDeclaration[lower-case(@Type)='aqsoql']/lower-case(@Image)]
+        |//UserClass[not(contains(lower-case(@Image), 'test'))]
+            //MethodCallExpression[.//NewObjectExpression[lower-case(@Type)='aqsoql'] 
+                and lower-case(@MethodName)='withoutsecurityenforced']
+                        ]]>
+                </value>
+            </property>
+        </properties>
+    </rule>
+
+    <rule
+        name="AvoidInsecureDmlOperationsOutsideOfTests"
+        language="apex"
+        message="Avoid Insecure Dml Operations Outside Of Tests"
+        class="net.sourceforge.pmd.lang.rule.XPathRule"
+    >
+        <priority>2</priority>
+        <properties>
+            <property name="version" value="2.0" />
+            <property name="xpath">
+                <value>
+                    <![CDATA[
+        /*[local-name()='UserClass' and not(descendant::*[local-name()='Annotation' and @Image='IsTest'])]
+        //MethodCallExpression[contains(
+            'aqdml.insecureinsert aqdml.insecureupdate aqdml.insecuredelete aqdml.insecureundelete aqdml.insecureupsert aqdml.insecureupdate', 
+            lower-case(@FullMethodName))]
+                        ]]>
+                </value>
+            </property>
+        </properties>
+    </rule>
+
+    <rule
+        name="AvoidStaticDmlStatementsOutsideOfTests"
+        language="apex"
+        message="AvoidStaticDmlStatementsOutsideOfTests"
+        class="net.sourceforge.pmd.lang.rule.XPathRule"
+    >
+        <priority>2</priority>
+        <properties>
+            <property name="version" value="2.0" />
+            <property name="xpath">
+                <value>
+                    <![CDATA[
+        /*[local-name()='UserClass' and not(descendant::*[local-name()='Annotation' and @Image='IsTest'])]
+            //(DmlInsertStatement|DmlUpdateStatement|DmlDeleteStatement|DmlUpsertStatement|DmlUndeleteStatement)|
+        //UserClass[not(contains(lower-case(@Image), 'test'))]//MethodCallExpression[contains(
+            'database.insert database.insertasync database.insertimmediate database.update database.updateasync database.updateimmediate database.upsert database.undelete database.deleteasync database.deleteimmediate database.delete',
+            lower-case(@FullMethodName)
+        )]
+                    ]]>
+                </value>
+            </property>
+        </properties>
+    </rule>
+
+    <rule
+        name="EscapeParameterInDynamicSoql"
+        language="apex"
+        message="Escape Parameter In Dynamic Soql"
+        class="net.sourceforge.pmd.lang.rule.XPathRule"
+    >
+        <priority>2</priority>
+        <properties>
+            <property name="version" value="2.0" />
+            <property name="xpath">
+                <value>
+                    <![CDATA[
+        //ExpressionStatement[
+            not(.//MethodCallExpression[lower-case(@MethodName)='escapesinglequotes']) 
+            and (.//*[@Operator='+'] or .//*[@Operator='+='])
+            and ./following-sibling::*//MethodCallExpression[lower-case(@MethodName)='withwhere']
+                /VariableExpression[@Image=//ExpressionStatement[
+                    not(.//MethodCallExpression[lower-case(@MethodName)='escapesinglequotes']) 
+                    and (.//*[contains(@Operator, '+')])]
+                //VariableExpression/@Image]]
+                |
+                //VariableDeclarationStatements[
+                    not(.//MethodCallExpression[lower-case(@MethodName)='escapesinglequotes']) 
+                    and (.//*[contains(@Operator, '+')])
+                    and ./following-sibling::*//MethodCallExpression[lower-case(@MethodName)='withwhere']
+                        /VariableExpression[@Image=//VariableDeclarationStatements[
+                            not(.//MethodCallExpression[lower-case(@MethodName)='escapesinglequotes']) 
+                            and (.//*[contains(@Operator, '+')])]
+                        //VariableExpression/@Image]]|//MethodCallExpression[
+                            lower-case(@MethodName)='withwhere' 
+                            and .//*[@Operator='+'] 
+                            and count(.//MethodCallExpression[lower-case(@MethodName)='escapesinglequotes'])!=count(.//VariableExpression)]
+                        ]]>
+                </value>
+            </property>
+        </properties>
+    </rule>
+</ruleset>
