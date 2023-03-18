@@ -1,4 +1,4 @@
-name: SFDX Scanner (Static Code Analysis)
+name: Static Code Analysis on PR
 on:
   pull_request:
     types: [opened, reopened, synchronize, edited]
@@ -18,6 +18,6 @@ jobs:
         uses: mitchspano/sfdx-scan-pull-request@v0.1.7
         with:
           severity-threshold: 4
-          pmdconfig: ruleset.xml
+          pmdconfig: pmd/standard-ruleset.xml
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
