@@ -14,6 +14,17 @@
         </properties>
     </rule>
 
+    <rule name="MetadataRequiresDescription" language="xml" message="Classes should use the latest API version." class="net.sourceforge.pmd.lang.rule.XPathRule">
+        <properties>
+            <property name="version" value="2.0"></property>
+            <property name="xpath">
+                <value><![CDATA[
+                    //*[self::CustomObject or self::CustomField][not(description)]
+                ]]></value>
+            </property>
+        </properties>
+    </rule>
+
     <rule name="NoUnderscoresInFieldNames" language="xml" message="Custom fields should not contain underscores." class="net.sourceforge.pmd.lang.rule.XPathRule">
         <properties>
             <property name="version" value="2.0"></property>
@@ -78,7 +89,7 @@
         </properties>
     </rule>
 
-    <rule name="ModifyAllOnSysAdminProfile" language="xml" message="Only Admins can view and modify all data, if any other profile get these permissions, they could manipulate records that shouldn't" class="net.sourceforge.pmd.lang.rule.XPathRule">
+    <rule name="ModifyOrViewAllOnSysAdminProfile" language="xml" message="Only Admins can view and modify all data, if any other profile get these permissions, they could manipulate records that shouldn't" class="net.sourceforge.pmd.lang.rule.XPathRule">
         <priority>3</priority>
         <properties>
             <property name="version" value="2.0"></property>
@@ -90,25 +101,13 @@
         </properties>
     </rule>
 
-    <rule name="ModifyAllOnPermSet" language="xml" message="Allowing this user permission can give access and ability to modify sensitive data." class="net.sourceforge.pmd.lang.rule.XPathRule">
+    <rule name="ModifyOrViewAllOnPermSet" language="xml" message="Allowing this user permission can give access and ability to modify sensitive data." class="net.sourceforge.pmd.lang.rule.XPathRule">
         <priority>3</priority>
         <properties>
             <property name="version" value="2.0"></property>
             <property name="xpath">
                 <value><![CDATA[
-                //PermissionSet/userPermissions[ name/text[@Image='ModifyAllData'] and enabled/text[@Image='true'] ]
-                ]]> </value>
-            </property>
-        </properties>
-    </rule>
-
-    <rule name="ViewAllOnPermSet" language="xml" message="Allowing this user permission can give access to sensitive data." class="net.sourceforge.pmd.lang.rule.XPathRule">
-        <priority>3</priority>
-        <properties>
-            <property name="version" value="2.0"></property>
-            <property name="xpath">
-                <value><![CDATA[
-                //PermissionSet/userPermissions[ name/text[@Image='ViewAllData'] and enabled/text[@Image='true'] ]
+                //PermissionSet/userPermissions[ name/text[@Image='ModifyAllData' or @Image='ViewAllData'] and enabled/text[@Image='true'] ]
                 ]]> </value>
             </property>
         </properties>
