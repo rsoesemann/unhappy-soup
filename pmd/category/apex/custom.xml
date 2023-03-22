@@ -1,55 +1,57 @@
 <?xml version="1.0" ?>
 <ruleset name="Default Apex" xmlns="http://pmd.sourceforge.net/ruleset/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 https://pmd.sourceforge.io/ruleset_2_0_0.xsd">
 
-    <description>Default Apex ruleset</description>
+   <description>Default Apex ruleset</description>
 
-    <rule name="SoqlOnlyInSelectorsOrTests" language="apex" message="SOQL queries can only appear in test methods and accessor classes" class="net.sourceforge.pmd.lang.apex.rule.ApexXPathRule">
-        <priority>2</priority>
-        <properties>
-           <property name="version" value="2.0"/>
-           <property name="xpath">
-              <value>
-                 <![CDATA[
-                //UserClass[not(ends-with(@Image, 'Selector'))]/Method/ModifierNode[@Test=false()]/..//(SoqlExpression | MethodCallExpression[lower-case(@FullMethodName)='database.query'])
-                ]]>
-              </value>
-           </property>
-        </properties>
-     </rule>
-
-     <rule name="SoqlRequiresUserMode" language="apex" message="SOQL Statements should use WITH USER MODE" class="net.sourceforge.pmd.lang.apex.rule.ApexXPathRule">
-        <priority>2</priority>
-        <properties>
-           <property name="version" value="2.0"/>
-           <property name="xpath">
-              <value>
-                 <![CDATA[
-                 //SoqlExpression[not(ends-with(@Query, 'WITH USER_MODE'))]
-                ]]>
-              </value>
-           </property>
-        </properties>
-     </rule>
-
-
-     <rule name="NullValueCheckBeforeEmptyCheck" language="apex" message="Apex code must check != null before .isEmpty()" class="net.sourceforge.pmd.lang.rule.XPathRule">
-        <priority>2</priority>
-        <properties>
-            <property name="version" value="2.0"/>
-            <property name="xpath">
-            <value>
-                <![CDATA[
-                //BooleanExpression[@Op="&&"][
-                    child::*[2][
-                    self::BooleanExpression[@Op="!="][
-                        child::*[1][self::VariableExpression] and
-                        child::*[2][self::LiteralExpression[@LiteralType="NULL"]]
-                    ]
-                    ]
-                ]
-                ]]>
-            </value>
+   <rule name="AvoidProductionDebugLogs" language="apex" message="Avoid leaving System.debug() statments in code as they negativly influence performance." class="net.sourceforge.pmd.lang.apex.rule.ApexXPathRule">
+      <properties>
+          <property name="xpath">
+              <value><![CDATA[
+              //MethodCallExpression[lower-case(@FullMethodName)='system.debug'][count(*)=2]
+              ]]></value>
           </property>
-        </properties>
-      </rule>
+      </properties>
+  </rule>
+
+   <rule name="EnforceCrudFlsWithUserMode" language="apex" message="Enforce CRUD/FLS with USER MODE" class="net.sourceforge.pmd.lang.apex.rule.ApexXPathRule">
+      <priority>2</priority>
+      <properties>
+         <property name="version" value="2.0"/>
+         <property name="xpath">
+            <value>
+               <![CDATA[
+               //SoqlExpression[
+                  not(ends-with(lower-case(normalize-space(@Query)), 'with user_mode'))] 
+               | 
+               //MethodCallExpression[
+                  contains('database.count database.query database.getquerylocator search.query', 
+                  lower-case(@FullMethodName))]
+                  [not(VariableExpression[lower-case(@Image)='user_mode']/ReferenceExpression[lower-case(@Image)='accesslevel'])]
+               ]]>
+            </value>
+         </property>
+      </properties>
+   </rule>
+
+
+   <rule name="NullValueCheckBeforeEmptyCheck" language="apex" message="Apex code must check != null before .isEmpty()" class="net.sourceforge.pmd.lang.rule.XPathRule">
+      <priority>2</priority>
+      <properties>
+         <property name="version" value="2.0"/>
+         <property name="xpath">
+         <value>
+               <![CDATA[
+               //BooleanExpression[@Op="&&"][
+                  child::*[2][
+                  self::BooleanExpression[@Op="!="][
+                     child::*[1][self::VariableExpression] and
+                     child::*[2][self::LiteralExpression[@LiteralType="NULL"]]
+                  ]
+                  ]
+               ]
+               ]]>
+         </value>
+         </property>
+      </properties>
+   </rule>
 </ruleset>

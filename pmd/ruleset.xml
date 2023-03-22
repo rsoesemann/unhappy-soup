@@ -3,24 +3,18 @@
 
     <description>Default PMD ruleset</description>
 
-    <rule ref="category/apex/security.xml">
-        <priority>1</priority>                                  
-    </rule>
     <rule ref="category/apex/design.xml" />
-    <rule ref="category/apex/performance.xml" />
     <rule ref="category/apex/codestyle.xml" />
-    <rule ref="category/apex/bestpractices.xml">
-        <exclude name="ApexUnitTestClassShouldHaveRunAs" />
-        <exclude name="AvoidStaticDmlStatementsOutsideOfTests" />
-        <exclude name="ApexAssertionsShouldIncludeMessage" />
+    <rule ref="category/apex/errorprone.xml"/>
+
+    <rule ref="category/apex/bestpractices.xml">                    
+        <exclude name="ApexUnitTestClassShouldHaveRunAs" />         <!-- NO WAY -->
+        <exclude name="ApexAssertionsShouldIncludeMessage" />       <!-- NO WAY -->
     </rule>
-    <rule ref="category/apex/documentation.xml">
-        <exclude name="ApexDoc" />
+
+    <rule ref="category/apex/performance.xml">
+        <exclude name="AvoidDebugStatements" /> <!-- Replaced with Custom rule -->
     </rule>
-    <rule ref="category/apex/errorprone.xml">
-        <exclude name="AvoidNonExistentAnnotations" />
-    </rule>
-    <rule ref="category/apex/multithreading.xml" />
 
     <rule ref="category/apex/design.xml/CognitiveComplexity">
         <properties>
@@ -29,7 +23,12 @@
         </properties>
     </rule>
 
-    <rule ref="category/apex/security.xml/ApexCRUDViolation" message="Validate CRUD permission before SOQL/DML operation">
+    <rule ref="category/apex/security.xml">
+        <priority>1</priority>    
+        <exclude name="ApexCRUDViolation" />   <!-- Replaced with Custom rule -->                           
+    </rule>
+
+    <!-- <rule ref="category/apex/security.xml/ApexCRUDViolation" message="Validate CRUD permission before SOQL/DML operation">
         <priority>3</priority>
         <properties>
             <property name="createAuthMethodPattern" value="AuthorizationUtil\.(is|assert)(Createable|Upsertable)"/>
@@ -39,7 +38,7 @@
             <property name="undeleteAuthMethodPattern" value="AuthorizationUtil\.(is|assert)Undeletable"/>
             <property name="mergeAuthMethodPattern" value="AuthorizationUtil\.(is|assert)Mergeable"/>
         </properties>
-    </rule>
+    </rule> -->
 
     <rule ref="pmd/category/apex/custom.xml"/>
     <rule ref="pmd/category/xml/custom.xml"/>
