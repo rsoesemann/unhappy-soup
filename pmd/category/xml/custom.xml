@@ -36,6 +36,7 @@
         </properties>
     </rule>
 
+    <!-- Taken from https://github.com/pmd/pmd/issues/3413 -->
     <rule name="NoDmlInFlowLoops" language="xml" message="DML Operations shouldn't be done inside of Flow loops" class="net.sourceforge.pmd.lang.rule.XPathRule">
         <properties>
             <property name="version" value="2.0"></property>
