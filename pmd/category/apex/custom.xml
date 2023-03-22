@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
-<ruleset name="Default Apex" xmlns="http://pmd.sourceforge.net/ruleset/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 https://pmd.sourceforge.io/ruleset_2_0_0.xsd">
+<ruleset name="MyApexRules" xmlns="http://pmd.sourceforge.net/ruleset/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 https://pmd.sourceforge.io/ruleset_2_0_0.xsd">
 
-   <description>Default Apex ruleset</description>
+   <description>My Apex Rules</description>
 
    <rule name="AvoidProductionDebugLogs" language="apex" message="Avoid leaving System.debug() statments in code as they negativly influence performance." class="net.sourceforge.pmd.lang.apex.rule.ApexXPathRule">
       <properties>

@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
-<ruleset name="Default Metadata Ruleset" xmlns="http://pmd.sourceforge.net/ruleset/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 https://pmd.sourceforge.io/ruleset_2_0_0.xsd">
+<ruleset name="MyMetadataRules" xmlns="http://pmd.sourceforge.net/ruleset/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 https://pmd.sourceforge.io/ruleset_2_0_0.xsd">
 
-    <description>Default Metadata ruleset</description>
+    <description>My Metadata Rules</description>
 
     <rule name="BumpApiVersion" language="xml" message="Classes should use the latest API version." class="net.sourceforge.pmd.lang.rule.XPathRule">
         <properties>
@@ -14,7 +14,7 @@
         </properties>
     </rule>
 
-    <rule name="MetadataRequiresDescription" language="xml" message="Classes should use the latest API version." class="net.sourceforge.pmd.lang.rule.XPathRule">
+    <rule name="MetadataRequiresDescription" language="xml" message="Add a description to explain custom metadata" class="net.sourceforge.pmd.lang.rule.XPathRule">
         <properties>
             <property name="version" value="2.0"></property>
             <property name="xpath">
@@ -36,6 +36,18 @@
         </properties>
     </rule>
 
+    <rule name="NoDmlInFlowLoops" language="xml" message="DML Operations shouldn't be done inside of Flow loops" class="net.sourceforge.pmd.lang.rule.XPathRule">
+        <properties>
+            <property name="version" value="2.0"></property>
+            <property name="xpath">
+                <value><![CDATA[
+                    //Flow/loops//targetReference/text[@Image=//Flow/(recordCreates|recordDeletes|recordUpdates)/name/text/@Image]
+                ]]></value>
+            </property>
+        </properties>
+    </rule>
+
+    
     <rule name="CustomFieldNamingConvention" language="xml" message="Incorrectly named field" class="net.sourceforge.pmd.lang.rule.XPathRule">
         <properties>
             <property name="version" value="2.0"/>

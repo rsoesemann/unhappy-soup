@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>54.0</apiVersion>
+    <assignments>
+        <name>Set_Contact_Description</name>
+        <label>Set Contact Description</label>
+        <locationX>264</locationX>
+        <locationY>695</locationY>
+        <assignmentItems>
+            <assignToReference>Loop_Contacts.Description</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Updated</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_Contacts</targetReference>
+        </connector>
+    </assignments>
+    <interviewLabel>Account Update Contacts In Loop {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Account Update Contacts In Loop</label>
+    <loops>
+        <name>Loop_Contacts</name>
+        <label>Loop Contacts</label>
+        <locationX>176</locationX>
+        <locationY>455</locationY>
+        <collectionReference>Get_Contacts</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Update_Contact</targetReference>
+        </nextValueConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Contacts</name>
+        <label>Get Contacts</label>
+        <locationX>176</locationX>
+        <locationY>335</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Loop_Contacts</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>AccountId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>Contact</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <name>Update_Contact</name>
+        <label>Update Contact</label>
+        <locationX>264</locationX>
+        <locationY>575</locationY>
+        <connector>
+            <targetReference>Set_Contact_Description</targetReference>
+        </connector>
+        <inputReference>Loop_Contacts</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Contacts</targetReference>
+        </connector>
+        <object>Account</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Draft</status>
+</Flow>
