@@ -1,14 +1,10 @@
-public with sharing class ApexCRUDViolation {
+public with sharing class SecureApexCode {
 
-	@SuppressWarnings('PMD.SoqlOnlyInSelectorsOrTests')
-	public void main() {
+	public void makeMeSecure(List<Contact> contacts) {
+		modify(contacts);
 
-		List<Contact> contacts = [SELECT Email FROM Contact WITH USER_MODE];
-
-		if(!contacts.isEmpty() && contacts != null) {
-			for(Contact c : contacts) {
-				c.Email = email;
-			}
+		if(AuthorizationUtil.isUpdateable(Contact.SObjectType)){
+			update contacts;
 		}
 	}
 }

@@ -25,10 +25,10 @@
 
     <rule ref="category/apex/security.xml">
         <priority>1</priority>    
-        <exclude name="ApexCRUDViolation" />   <!-- Replaced with Custom rule -->                           
+        <!--<exclude name="ApexCRUDViolation" />-->   <!-- Replaced with Custom rule -->                           
     </rule>
 
-    <!-- <rule ref="category/apex/security.xml/ApexCRUDViolation" message="Validate CRUD permission before SOQL/DML operation">
+    <!--<rule ref="category/apex/security.xml/ApexCRUDViolation" message="Validate CRUD permission before SOQL/DML operation">
         <priority>3</priority>
         <properties>
             <property name="createAuthMethodPattern" value="AuthorizationUtil\.(is|assert)(Createable|Upsertable)"/>
@@ -38,7 +38,15 @@
             <property name="undeleteAuthMethodPattern" value="AuthorizationUtil\.(is|assert)Undeletable"/>
             <property name="mergeAuthMethodPattern" value="AuthorizationUtil\.(is|assert)Mergeable"/>
         </properties>
-    </rule> -->
+    </rule>-->
+    
+    <rule ref="category/apex/bestpractices.xml/ApexUnitTestClassShouldHaveAsserts"
+          message="Apex unit test classes should have at least one System.assert() or assertEquals() or AssertNotEquals() call">
+        <priority>3</priority>
+        <properties>
+            <property name="additionalAssertMethodPattern" value="((System\.Assert|Assert|Asserts)\.\w+|verify\w+)"/>
+        </properties>
+    </rule>
 
     <rule ref="pmd/category/apex/custom.xml"/>
     <rule ref="pmd/category/xml/custom.xml"/>

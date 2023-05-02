@@ -1,18 +1,21 @@
 public with sharing class CognitiveComplexity {
 
     private void foo() {
-        Integer n = 0;
-        do {                                // +1
-            if (n == 3) {                   // +2
-                System.debug('n is 3');
+        if(condition) {
+            if(condition2) {
+                foo();
             }
-            else if (n == 4) {              // +2
-                System.debug('n is 3');
+            else {
+                bar();
             }
-            else {                          // +2
-                System.debug('n is not 3');
+        }
+        else {
+            if(condition1) {
+                foo();
             }
-            n++;
-        } while (n < 100);
+            else {
+                bar();
+            }
+        }
     }
 }
