@@ -21,12 +21,10 @@
             <value>
                <![CDATA[
                //SoqlExpression[
-                  not(ends-with(lower-case(normalize-space(@Query)), 'with user_mode'))] 
-               | 
-               //MethodCallExpression[
-                  contains('database.count database.query database.getquerylocator search.query', 
-                  lower-case(@FullMethodName))]
-                  [not(VariableExpression[lower-case(@Image)='user_mode']/ReferenceExpression[lower-case(@Image)='accesslevel'])]
+                  not(ends-with(lower-case(normalize-space(@Query)), 'with user_mode'))]
+               |
+               //MethodCallExpression[lower-case(@FullMethodName)=('database.count', 'database.query', 'database.getquerylocator', 'search.query')]
+                  [not(VariableExpression/ReferenceExpression[lower-case(@Image)='accesslevel'])]
                ]]>
             </value>
          </property>
