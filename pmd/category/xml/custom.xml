@@ -8,7 +8,7 @@
             <property name="version" value="2.0"></property>
             <property name="xpath">
                 <value><![CDATA[
-                    //ApexClass/apiVersion/text[number(@Image) > 44]
+                    //ApexClass/apiVersion/text[number(@Image) < 50]
                 ]]></value>
             </property>
         </properties>
