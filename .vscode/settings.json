@@ -1,0 +1,4 @@
+{
+    "sarif-viewer.connectToGithubCodeScanning": "off",
+    "cody.codebase": "https://github.com/rsoesemann/unhappy-soup"
+}

@@ -22,3 +22,6 @@ sfdx force:data:record:update -s User -w "Name='User User'" -v "Languagelocaleke
 echo "Pushing changes to scratch org"
 execute sfdx force:source:push
 
+echo "Running Salesforce Code Analyser"
+sfdx scanner:run --format table --target force-app --engine "pmd" --pmdconfig "ruleset.xml"
+sfdx scanner:run:dfa --format table --target force-app --projectdir force-app
