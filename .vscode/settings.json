@@ -1,4 +1,5 @@
 {
     "sarif-viewer.connectToGithubCodeScanning": "off",
-    "cody.codebase": "https://github.com/rsoesemann/unhappy-soup"
+    "cody.codebase": "https://github.com/rsoesemann/unhappy-soup",
+    "codeAnalyzer.pMD.customConfigFile": "ruleset.xml"
 }

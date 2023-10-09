@@ -1,14 +1,12 @@
 <?xml version="1.0" ?>
 <ruleset name="Roberts Salesforce Ruleset" xmlns="http://pmd.sourceforge.net/ruleset/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 https://pmd.sourceforge.io/ruleset_2_0_0.xsd">
 
-    <!-- Ignore libraries -->
-    <exclude-pattern>.*/force-app/.*</exclude-pattern>
+    <description>Roberts Salesforce Ruleset</description>
+
     <include-pattern>.*/force-app/main/default/.*</include-pattern>
 
     <!-- Choose and customize Standard rules -->
-    <rule ref="category/apex/design.xml">
-        <exclude name="CognitiveComplexity" />
-    </rule>
+    <rule ref="category/apex/design.xml" />
     <rule ref="category/apex/codestyle.xml" />
     <rule ref="category/apex/errorprone.xml"/>
 
@@ -18,12 +16,7 @@
     </rule>
 
     <rule ref="category/apex/security.xml">
-        <priority>1</priority>    
-        <!-- Go to MessyCode.cls -->
-    </rule>
-
-    <rule ref="category/apex/performance.xml">
-        <exclude name="AvoidDebugStatements" />
+        <priority>1</priority>   
     </rule>
 
     <rule ref="category/apex/design.xml/CognitiveComplexity">
@@ -39,6 +32,10 @@
         <properties>
             <property name="additionalAssertMethodPattern" value="((System\.Assert|Assert|Asserts)\.\w+|verify\w+)"/>
         </properties>
+    </rule>
+
+    <rule ref="category/apex/performance.xml">
+        <exclude name="AvoidDebugStatements" />
     </rule>
 
     <!-- Custom Apex Rules -->
@@ -79,7 +76,7 @@
             <property name="version" value="2.0"/>
             <property name="xpath">
                 <value><![CDATA[
-                    //apiVersion/text[number(@Image) < 50]
+                //apiVersion/text[number(@Image) < 50]
                 ]]></value>
             </property>
         </properties>
@@ -110,6 +107,36 @@
             </property>
         </properties>
     </rule>
+
+    <rule name="FieldsMustHaveTypePrefix" language="xml" message="Field API names need a 3 letter type prefix." class="net.sourceforge.pmd.lang.rule.XPathRule">
+        <properties>
+            <property name="version" value="2.0"/>
+            <property name="xpath">
+                <value><![CDATA[
+                //CustomField/fullName[
+                    (.[not(starts-with(text,"chk_"))] and ../type/text[@Image="Checkbox"]) or
+                    (.[not(starts-with(text,"txt_"))] and ../type/text[@Image="Text"]) or
+                    (.[not(starts-with(text,"txa_"))] and ../type/text[@Image="Textarea"]) or
+                    (.[not(starts-with(text,"txr_"))] and ../type/text[@Image="Richtext"]) or
+                    (.[not(starts-with(text,"txl_"))] and ../type/text[@Image="LongTextArea"]) or
+                    (.[not(starts-with(text,"num_"))] and ../type/text[@Image="Number"]) or
+                    (.[not(starts-with(text,"dat_"))] and ../type/text[@Image="Date"]) or
+                    (.[not(starts-with(text,"lkp_"))] and ../type/text[@Image="Lookup"]) or
+                    (.[not(starts-with(text,"mdr_"))] and ../type/text[@Image="MasterDetail"]) or
+                    (.[not(starts-with(text,"dtm_"))] and ../type/text[@Image="DateTime"]) or
+                    (.[not(starts-with(text,"url_"))] and ../type/text[@Image="Url"]) or
+                    (.[not(starts-with(text,"pkl_"))] and ../type/text[@Image="Picklist"]) or
+                    (.[not(starts-with(text,"pkm_"))] and ../type/text[@Image="MultiselectPicklist"]) or
+                    (.[not(starts-with(text,"cur_"))] and ../type/text[@Image="Currency"]) or
+                    (.[not(starts-with(text,"pct_"))] and ../type/text[@Image="Percent"]) or
+                    (.[not(starts-with(text,"fcur_"))] and ../type/text[@Image="Currency"]) or
+                    (.[not(starts-with(text,"rcnt_"))] and ../type/text[@Image="Summary"]) 
+                ]
+                ]]></value>
+            </property>
+        </properties>
+    </rule>
+
 
     <!-- Org Security -->
 
