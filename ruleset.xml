@@ -1,46 +1,60 @@
-<?xml version="1.0" ?>
-<ruleset name="Roberts Salesforce Ruleset" xmlns="http://pmd.sourceforge.net/ruleset/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 https://pmd.sourceforge.io/ruleset_2_0_0.xsd">
+<?xml version="1.0"?>
+<ruleset name="Opinionated PMD Ruleset" xmlns="http://pmd.sourceforge.net/ruleset/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 https://pmd.sourceforge.io/ruleset_2_0_0.xsd">
 
-    <description>Roberts Salesforce Ruleset</description>
+    <description>Opinionated PMD Ruleset</description>
 
-    <include-pattern>.*/force-app/main/default/.*</include-pattern>
-
-    <!-- Choose and customize Standard rules -->
-    <rule ref="category/apex/design.xml" />
-    <rule ref="category/apex/codestyle.xml" />
-    <rule ref="category/apex/errorprone.xml"/>
-
-    <rule ref="category/apex/bestpractices.xml">                    
-        <exclude name="ApexUnitTestClassShouldHaveRunAs" />         <!-- NO WAY -->
-        <exclude name="ApexAssertionsShouldIncludeMessage" />       <!-- NO WAY -->
-    </rule>
-
+    <!-- STANDARD RULES -->  
+    
     <rule ref="category/apex/security.xml">
-        <priority>1</priority>   
+        <priority>1</priority>
+        <!-- All are good and not controversial -->
+    </rule>  
+    
+    <rule ref="category/apex/bestpractices.xml">      
+        <priority>2</priority>   
+        
+        <exclude name="ApexUnitTestClassShouldHaveRunAs" /> <!-- No smart person does that -->
+        <exclude name="ApexAssertionsShouldIncludeMessage" /> <!-- Better have a focused well named method -->
+        <exclude name="ApexUnitTestClassShouldHaveAsserts" /> <!-- Configured below -->
     </rule>
 
-    <rule ref="category/apex/design.xml/CognitiveComplexity">
-        <properties>
-            <property name="classReportLevel" value="50" />
-            <property name="methodReportLevel" value="15" />
-        </properties>
-    </rule>
-
-    <rule ref="category/apex/bestpractices.xml/ApexUnitTestClassShouldHaveAsserts"
-          message="Apex unit test classes should have at least one System.assert() or assertEquals() or AssertNotEquals() call">
+    <rule ref="category/apex/bestpractices.xml/ApexUnitTestClassShouldHaveAsserts" message="Apex unit test classes should have at least one System.assert() or assertEquals() or AssertNotEquals() call">
         <priority>3</priority>
         <properties>
             <property name="additionalAssertMethodPattern" value="((System\.Assert|Assert|Asserts)\.\w+|verify\w+)"/>
         </properties>
     </rule>
+    
+    <rule ref="category/apex/design.xml">      
+        <priority>2</priority>  
 
-    <rule ref="category/apex/performance.xml">
-        <exclude name="AvoidDebugStatements" />
+        <!-- Note: Cognitive Complexity covers all of that better -->     
+        <exclude name="AvoidDeeplyNestedIfStmts" />
+        <exclude name="StdCyclomaticComplexity" />
+        <exclude name="CyclomaticComplexity" />
+        <exclude name="ExcessiveClassLength" />
+        <exclude name="ExcessiveParameterList" />
+        <exclude name="ExcessivePublicCount" />
+        <exclude name="TooManyFields" />
+        <exclude name="NcssConstructorCount" />
+        <exclude name="NcssMethodCount" />
+        <exclude name="NcssTypeCount" />
     </rule>
 
-    <!-- Custom Apex Rules -->
+    <rule ref="category/apex/performance.xml">      
+        <priority>2</priority>   
+
+        <!-- Note: All below should be covered by OperationWithLimitsInLoop -->     
+        <exclude name="AvoidDmlStatementsInLoops" />    
+        <exclude name="AvoidSoqlInLoops" />    
+        <exclude name="AvoidSoslInLoops" />    
+
+        <!-- Improved by AvoidProductionDebugLogs below -->
+        <exclude name="AvoidDebugStatements" />   
+    </rule>
 
     <rule name="AvoidProductionDebugLogs" language="apex" message="Avoid leaving System.debug() statments in code as they negativly influence performance." class="net.sourceforge.pmd.lang.rule.XPathRule">
+        <priority>2</priority>   
         <properties>
             <property name="version" value="2.0"/>
             <property name="xpath">
@@ -51,7 +65,22 @@
         </properties>
     </rule>
 
+    <rule ref="category/apex/codestyle.xml">      
+        <priority>2</priority>  
+        <!-- Note: All are super crucial for readable, maintainable code -->     
+    </rule>
+
+    <rule ref="category/apex/errorprone.xml">      
+        <priority>2</priority>  
+        <!-- Note: Stupid category but I think everything in there is valid and a 2 -->     
+    </rule>
+
+    <!-- CUSTOM RULES -->
+
+    <!-- Apex Rules -->
+
     <rule name="NullValueCheckBeforeEmptyCheck" language="apex" message="Apex code must check != null before .isEmpty()" class="net.sourceforge.pmd.lang.rule.XPathRule">
+        <priority>2</priority>
         <properties>
             <property name="version" value="2.0"/>
             <property name="xpath">
@@ -69,9 +98,10 @@
         </properties>
     </rule>
 
-    <!-- Metadata XML -->
+    <!-- Metadata XML Rules -->
 
     <rule name="BumpApiVersion" language="xml" message="Metadata should use the latest API version." class="net.sourceforge.pmd.lang.rule.XPathRule">
+        <priority>3</priority>
         <properties>
             <property name="version" value="2.0"/>
             <property name="xpath">
@@ -82,9 +112,10 @@
         </properties>
     </rule>
 
-    <!-- Flows -->
+    <!-- Flow Rules -->
 
     <rule name="DMLStatementInFlowLoop" language="xml" message="DML Operations shouldn't be done inside of Flow loops" class="net.sourceforge.pmd.lang.rule.XPathRule">
+        <priority>2</priority>
         <properties>
             <property name="version" value="2.0"/>
             <property name="xpath">
@@ -95,9 +126,10 @@
         </properties>
     </rule>
 
-    <!-- Custom Objects / Fields -->
+    <!-- Custom Objects / Fields Rules -->
 
     <rule name="MetadataRequiresDescription" language="xml" message="Add a description to explain custom metadata" class="net.sourceforge.pmd.lang.rule.XPathRule">
+        <priority>2</priority>
         <properties>
             <property name="version" value="2.0"/>
             <property name="xpath">
@@ -108,61 +140,11 @@
         </properties>
     </rule>
 
-    <rule name="FieldsMustHaveTypePrefix" language="xml" message="Field API names need a 3 letter type prefix." class="net.sourceforge.pmd.lang.rule.XPathRule">
-        <properties>
-            <property name="version" value="2.0"/>
-            <property name="xpath">
-                <value><![CDATA[
-                //CustomField/fullName[
-                    (.[not(starts-with(text,"chk_"))] and ../type/text[@Image="Checkbox"]) or
-                    (.[not(starts-with(text,"txt_"))] and ../type/text[@Image="Text"]) or
-                    (.[not(starts-with(text,"txa_"))] and ../type/text[@Image="Textarea"]) or
-                    (.[not(starts-with(text,"txr_"))] and ../type/text[@Image="Richtext"]) or
-                    (.[not(starts-with(text,"txl_"))] and ../type/text[@Image="LongTextArea"]) or
-                    (.[not(starts-with(text,"num_"))] and ../type/text[@Image="Number"]) or
-                    (.[not(starts-with(text,"dat_"))] and ../type/text[@Image="Date"]) or
-                    (.[not(starts-with(text,"lkp_"))] and ../type/text[@Image="Lookup"]) or
-                    (.[not(starts-with(text,"mdr_"))] and ../type/text[@Image="MasterDetail"]) or
-                    (.[not(starts-with(text,"dtm_"))] and ../type/text[@Image="DateTime"]) or
-                    (.[not(starts-with(text,"url_"))] and ../type/text[@Image="Url"]) or
-                    (.[not(starts-with(text,"pkl_"))] and ../type/text[@Image="Picklist"]) or
-                    (.[not(starts-with(text,"pkm_"))] and ../type/text[@Image="MultiselectPicklist"]) or
-                    (.[not(starts-with(text,"cur_"))] and ../type/text[@Image="Currency"]) or
-                    (.[not(starts-with(text,"pct_"))] and ../type/text[@Image="Percent"]) or
-                    (.[not(starts-with(text,"fcur_"))] and ../type/text[@Image="Currency"]) or
-                    (.[not(starts-with(text,"rcnt_"))] and ../type/text[@Image="Summary"]) 
-                ]
-                ]]></value>
-            </property>
-        </properties>
-    </rule>
 
-
-    <!-- Org Security -->
-
-    <rule name="UnrestrictedPasswordPolicy" language="xml" message="It is a high security risk for any profile to have &quot;No Restriction&quot; as the password complexity requirement." class="net.sourceforge.pmd.lang.rule.XPathRule">
-        <properties>
-            <property name="version" value="2.0"/>
-            <property name="xpath">
-                <value><![CDATA[
-                //SecuritySettings/passwordPolicies/complexity[ text[@Image='No restriction'] ]
-                ]]> </value>
-            </property>
-        </properties>
-    </rule>
-
-    <rule name="TooShortPasswordPolicy" language="xml" message="The default value for the password length is 8 characters. Less than 8 characters is not secure." class="net.sourceforge.pmd.lang.rule.XPathRule">
-        <properties>
-            <property name="version" value="2.0"/>
-            <property name="xpath">
-                <value><![CDATA[
-                //SecuritySettings/passwordPolicies/minimumPasswordLength[ text[@Image<'8'] ]
-                ]]> </value>
-            </property>
-        </properties>
-    </rule>
+    <!-- Profile and Permission Set Rules -->
 
     <rule name="ModifyOrViewAllOnSysAdminProfile" language="xml" message="Only Admins can view and modify all data, if any other profile get these permissions, they could manipulate records that shouldn't" class="net.sourceforge.pmd.lang.rule.XPathRule">
+        <priority>1</priority>
         <properties>
             <property name="version" value="2.0"/>
             <property name="xpath">
@@ -174,6 +156,7 @@
     </rule>
 
     <rule name="ModifyOrViewAllOnPermSet" language="xml" message="Allowing this user permission can give access and ability to modify sensitive data." class="net.sourceforge.pmd.lang.rule.XPathRule">
+        <priority>1</priority>
         <properties>
             <property name="version" value="2.0"/>
             <property name="xpath">
@@ -185,6 +168,7 @@
     </rule>
 
     <rule name="ManageUsersByNonSysAdmins" language="xml" message="Managing users need to be limited to System Administrator Profile only." class="net.sourceforge.pmd.lang.rule.XPathRule">
+        <priority>1</priority>
         <properties>
             <property name="version" value="2.0"/>
             <property name="xpath">
@@ -194,6 +178,20 @@
             </property>
         </properties>
     </rule>
+
+    <rule name="ViewSetupByNonSysAdmins" language="xml" message="Exposing the setup menu to non-authorized users." class="net.sourceforge.pmd.lang.rule.XPathRule">
+        <priority>1</priority>
+        <properties>
+            <property name="version" value="2.0"/>
+            <property name="xpath">
+                <value><![CDATA[
+                //Profile/userPermissions[ pmd:fileName() != 'System Administrator' and enabled/text[@Image='true'] and name/text[@Image='ViewSetup'] ]
+                ]]> </value>
+            </property>
+        </properties>
+    </rule>
+
+    <!-- Org Setting Rules -->
 
     <rule name="TooLongSessionTimeout" language="xml" message="Allowing access to an inactive session for more than 12 hours is a security risk." class="net.sourceforge.pmd.lang.rule.XPathRule">
         <properties>
@@ -216,16 +214,4 @@
             </property>
         </properties>
     </rule>
-
-    <rule name="ViewSetupByNonSysAdmins" language="xml" message="Exposing the setup menu to non-authorized users." class="net.sourceforge.pmd.lang.rule.XPathRule">
-        <properties>
-            <property name="version" value="2.0"/>
-            <property name="xpath">
-                <value><![CDATA[
-                //Profile/userPermissions[ pmd:fileName() != 'System Administrator' and enabled/text[@Image='true'] and name/text[@Image='ViewSetup'] ]
-                ]]> </value>
-            </property>
-        </properties>
-    </rule>
-
 </ruleset>
