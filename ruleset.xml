@@ -8,7 +8,24 @@
     <rule ref="category/apex/security.xml">
         <priority>1</priority>
         <!-- All are good and not controversial -->
-    </rule>  
+    </rule>    
+
+    <rule name="EnforceCrudFlsWithUserMode" language="apex" message="Enforce CRUD/FLS with USER MODE" class="net.sourceforge.pmd.lang.rule.XPathRule">
+        <properties>
+            <property name="version" value="2.0"/>
+            <property name="xpath">
+            <value>
+                <![CDATA[
+                //SoqlExpression[
+                    not(ends-with(lower-case(normalize-space(@Query)), 'with user_mode'))]
+                |
+                //MethodCallExpression[lower-case(@FullMethodName)=('database.count', 'database.query', 'database.getquerylocator', 'search.query')]
+                    [not(VariableExpression/ReferenceExpression[lower-case(@Image)='accesslevel'])]
+                ]]>
+            </value>
+            </property>
+        </properties>
+    </rule>
     
     <rule ref="category/apex/bestpractices.xml">      
         <priority>2</priority>   
