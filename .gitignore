@@ -43,3 +43,5 @@ screenshots/
 log.html
 output.xml
 report.html
+
+force-app/ffhttp/
