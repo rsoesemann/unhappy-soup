@@ -3,6 +3,8 @@
 
     <description>Opinionated PMD Ruleset</description>
 
+    <!-- SCAN OR IGNORE -->
+
     <!-- STANDARD RULES -->  
     
     <rule ref="category/apex/security.xml">
@@ -231,4 +233,20 @@
             </property>
         </properties>
     </rule>
+
+
+
+<!--
+    <rule name="EnforceTwoFactorAuthentication" language="xml" message="Production Orgs need to use Two-Factor Authentication" class="net.sourceforge.pmd.lang.rule.XPathRule">
+        <priority>1</priority>
+        <properties>
+            <property name="version" value="2.0"/>
+            <property name="xpath">
+                <value><![CDATA[
+                //SecuritySettings/sessionSettings/enableU2F/text[@Image='false']
+                ]]> </value>
+            </property>
+        </properties>
+    </rule>
+-->
 </ruleset>

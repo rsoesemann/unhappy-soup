@@ -1,5 +1,9 @@
 {
     "sarif-viewer.connectToGithubCodeScanning": "off",
     "cody.codebase": "https://github.com/rsoesemann/unhappy-soup",
-    "codeAnalyzer.pMD.customConfigFile": "ruleset.xml"
+    "codeAnalyzer.pMD.customConfigFile": "ruleset.xml",
+    "apexPMD.rulesets": [
+        "ruleset.xml"
+    ],
+    "apexPMD.pmdBinPath": "/Users/rsoesemann/dev/pmd-bin-7.0.0-rc4"
 }

@@ -1,29 +1,490 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<SecuritySettings xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <canUsersGrantLoginAccess>true</canUsersGrantLoginAccess>
-    <enableAdminLoginAsAnyUser>false</enableAdminLoginAsAnyUser>
-    <enableAuditFieldsInactiveOwner>false</enableAuditFieldsInactiveOwner>
+<SecuritySettings xmlns="http://soap.sforce.com/2006/04/metadata">
+    <canUsersGrantLoginAccess>false</canUsersGrantLoginAccess>
+    <enableAdminLoginAsAnyUser>true</enableAdminLoginAsAnyUser>
+    <enableAuditFieldsInactiveOwner>true</enableAuditFieldsInactiveOwner>
     <enableAuraSecureEvalPref>true</enableAuraSecureEvalPref>
+    <enableCoepHeader>false</enableCoepHeader>
+    <enableCoopHeader>false</enableCoopHeader>
     <enableRequireHttpsConnection>true</enableRequireHttpsConnection>
-    <isTLSv12Required xsi:nil="true"/>
-    <isTLSv12RequiredCommunities xsi:nil="true"/>
-    <networkAccess/>
+    <networkAccess>
+        <ipRanges>
+            <end>2406:e00:110:4600:6c9e:286d:3412:36fa</end>
+            <start>2406:e00:110:4600:6c9e:286d:3412:36fa</start>
+        </ipRanges>
+        <ipRanges>
+            <end>2405:205:158c:72ee:5cef:a248:a8f1:77e4</end>
+            <start>2405:205:158c:72ee:5cef:a248:a8f1:77e4</start>
+        </ipRanges>
+        <ipRanges>
+            <end>2405:205:128f:a73f:4c2:97a8:bacf:ab30</end>
+            <start>2405:205:128f:a73f:4c2:97a8:bacf:ab30</start>
+        </ipRanges>
+        <ipRanges>
+            <end>223.188.255.255</end>
+            <start>223.188.0.0</start>
+        </ipRanges>
+        <ipRanges>
+            <end>223.255.255.255</end>
+            <start>223.0.0.0</start>
+        </ipRanges>
+        <ipRanges>
+            <end>222.165.78.152</end>
+            <start>222.165.78.152</start>
+        </ipRanges>
+        <ipRanges>
+            <end>219.255.255.255</end>
+            <start>219.0.0.0</start>
+        </ipRanges>
+        <ipRanges>
+            <end>209.67.98.63</end>
+            <start>209.67.98.1</start>
+        </ipRanges>
+        <ipRanges>
+            <end>209.46.117.191</end>
+            <start>209.46.117.161</start>
+        </ipRanges>
+        <ipRanges>
+            <end>206.25.247.159</end>
+            <start>206.25.247.129</start>
+        </ipRanges>
+        <ipRanges>
+            <end>203.99.205.255</end>
+            <start>203.99.205.0</start>
+        </ipRanges>
+        <ipRanges>
+            <end>202.191.230.194</end>
+            <start>202.191.230.194</start>
+        </ipRanges>
+        <ipRanges>
+            <description>Phiz</description>
+            <end>202.255.255.255</end>
+            <start>202.0.0.0</start>
+        </ipRanges>
+        <ipRanges>
+            <description>CVENT</description>
+            <end>192.190.92.255</end>
+            <start>192.190.92.0</start>
+        </ipRanges>
+        <ipRanges>
+            <end>185.81.103.254</end>
+            <start>185.81.100.1</start>
+        </ipRanges>
+        <ipRanges>
+            <end>182.76.35.138</end>
+            <start>182.76.35.138</start>
+        </ipRanges>
+        <ipRanges>
+            <end>180.255.255.255</end>
+            <start>180.0.0.0</start>
+        </ipRanges>
+        <ipRanges>
+            <end>171.79.248.170</end>
+            <start>171.79.248.170</start>
+        </ipRanges>
+        <ipRanges>
+            <end>171.79.245.255</end>
+            <start>171.79.245.0</start>
+        </ipRanges>
+        <ipRanges>
+            <end>171.79.180.255</end>
+            <start>171.79.180.0</start>
+        </ipRanges>
+        <ipRanges>
+            <end>171.79.255.255</end>
+            <start>171.79.0.0</start>
+        </ipRanges>
+        <ipRanges>
+            <description>IHG Concerto System</description>
+            <end>165.2.103.254</end>
+            <start>165.2.103.254</start>
+        </ipRanges>
+        <ipRanges>
+            <end>165.2.73.255</end>
+            <start>165.2.73.1</start>
+        </ipRanges>
+        <ipRanges>
+            <end>165.2.72.24</end>
+            <start>165.2.72.0</start>
+        </ipRanges>
+        <ipRanges>
+            <description>Informatica Server IP&apos;s</description>
+            <end>165.2.72.255</end>
+            <start>165.2.72.0</start>
+        </ipRanges>
+        <ipRanges>
+            <end>163.255.255.255</end>
+            <start>163.0.0.0</start>
+        </ipRanges>
+        <ipRanges>
+            <description>DocuSign Production NA and Demo</description>
+            <end>162.248.187.254</end>
+            <start>162.248.184.1</start>
+        </ipRanges>
+        <ipRanges>
+            <end>162.248.187.255</end>
+            <start>162.248.184.1</start>
+        </ipRanges>
+        <ipRanges>
+            <end>157.37.253.255</end>
+            <start>157.37.253.0</start>
+        </ipRanges>
+        <ipRanges>
+            <end>157.37.246.189</end>
+            <start>157.37.246.189</start>
+        </ipRanges>
+        <ipRanges>
+            <end>157.37.239.255</end>
+            <start>157.37.239.0</start>
+        </ipRanges>
+        <ipRanges>
+            <end>157.37.125.255</end>
+            <start>157.37.125.0</start>
+        </ipRanges>
+        <ipRanges>
+            <end>157.37.109.146</end>
+            <start>157.37.109.146</start>
+        </ipRanges>
+        <ipRanges>
+            <end>157.37.28.255</end>
+            <start>157.37.28.0</start>
+        </ipRanges>
+        <ipRanges>
+            <end>157.37.9.86</end>
+            <start>157.37.9.86</start>
+        </ipRanges>
+        <ipRanges>
+            <end>157.255.255.255</end>
+            <start>157.0.0.0</start>
+        </ipRanges>
+        <ipRanges>
+            <end>152.58.100.33</end>
+            <start>152.58.100.33</start>
+        </ipRanges>
+        <ipRanges>
+            <description>Kartik 2</description>
+            <end>152.58.99.249</end>
+            <start>152.58.99.249</start>
+        </ipRanges>
+        <ipRanges>
+            <end>122.179.193.97</end>
+            <start>122.179.193.97</start>
+        </ipRanges>
+        <ipRanges>
+            <description>IB Dev</description>
+            <end>122.172.80.127</end>
+            <start>122.172.80.127</start>
+        </ipRanges>
+        <ipRanges>
+            <end>122.161.42.190</end>
+            <start>122.161.42.190</start>
+        </ipRanges>
+        <ipRanges>
+            <description>iBirds office 2</description>
+            <end>122.161.42.48</end>
+            <start>122.161.42.48</start>
+        </ipRanges>
+        <ipRanges>
+            <end>122.161.38.51</end>
+            <start>122.161.38.51</start>
+        </ipRanges>
+        <ipRanges>
+            <end>122.161.36.215</end>
+            <start>122.161.36.215</start>
+        </ipRanges>
+        <ipRanges>
+            <description>phiz</description>
+            <end>121.245.127.203</end>
+            <start>121.245.127.203</start>
+        </ipRanges>
+        <ipRanges>
+            <end>121.245.125.47</end>
+            <start>121.245.125.47</start>
+        </ipRanges>
+        <ipRanges>
+            <end>121.255.255.255</end>
+            <start>121.0.0.0</start>
+        </ipRanges>
+        <ipRanges>
+            <end>118.255.255.255</end>
+            <start>118.0.0.0</start>
+        </ipRanges>
+        <ipRanges>
+            <description>117.208.115.146</description>
+            <end>117.208.115.146</end>
+            <start>117.208.115.146</start>
+        </ipRanges>
+        <ipRanges>
+            <end>117.255.255.255</end>
+            <start>117.0.0.0</start>
+        </ipRanges>
+        <ipRanges>
+            <end>116.255.255.255</end>
+            <start>116.0.0.0</start>
+        </ipRanges>
+        <ipRanges>
+            <description>iBirds office</description>
+            <end>115.243.97.154</end>
+            <start>115.243.97.154</start>
+        </ipRanges>
+        <ipRanges>
+            <end>106.255.255.255</end>
+            <start>106.0.0.0</start>
+        </ipRanges>
+        <ipRanges>
+            <description>Kartik</description>
+            <end>103.159.183.242</end>
+            <start>103.159.183.242</start>
+        </ipRanges>
+        <ipRanges>
+            <description>Sunny</description>
+            <end>103.159.183.234</end>
+            <start>103.159.183.234</start>
+        </ipRanges>
+        <ipRanges>
+            <end>103.255.255.255</end>
+            <start>103.0.0.0</start>
+        </ipRanges>
+        <ipRanges>
+            <end>66.249.79.255</end>
+            <start>66.249.79.1</start>
+        </ipRanges>
+        <ipRanges>
+            <description>DocuSign Production NA and Demo</description>
+            <end>64.207.219.254</end>
+            <start>64.207.216.1</start>
+        </ipRanges>
+        <ipRanges>
+            <end>61.255.255.255</end>
+            <start>61.0.0.0</start>
+        </ipRanges>
+        <ipRanges>
+            <end>59.161.88.5</end>
+            <start>59.161.88.5</start>
+        </ipRanges>
+        <ipRanges>
+            <end>59.161.68.82</end>
+            <start>59.161.68.82</start>
+        </ipRanges>
+        <ipRanges>
+            <end>59.255.255.255</end>
+            <start>59.0.0.0</start>
+        </ipRanges>
+        <ipRanges>
+            <end>54.149.21.90</end>
+            <start>54.149.21.90</start>
+        </ipRanges>
+        <ipRanges>
+            <end>54.69.114.54</end>
+            <start>54.69.114.54</start>
+        </ipRanges>
+        <ipRanges>
+            <description>DocuSign Production NA and Demo</description>
+            <end>52.41.95.219</end>
+            <start>52.41.95.219</start>
+        </ipRanges>
+        <ipRanges>
+            <description>DocuSign Production NA and Demo</description>
+            <end>52.34.155.26</end>
+            <start>52.34.155.26</start>
+        </ipRanges>
+        <ipRanges>
+            <end>52.28.168.105</end>
+            <start>52.28.168.105</start>
+        </ipRanges>
+        <ipRanges>
+            <end>52.27.126.9</end>
+            <start>52.27.126.9</start>
+        </ipRanges>
+        <ipRanges>
+            <description>DocuSign Production NA and Demo</description>
+            <end>52.27.85.20</end>
+            <start>52.27.85.20</start>
+        </ipRanges>
+        <ipRanges>
+            <end>52.26.192.160</end>
+            <start>52.26.192.160</start>
+        </ipRanges>
+        <ipRanges>
+            <end>52.25.145.215</end>
+            <start>52.25.145.215</start>
+        </ipRanges>
+        <ipRanges>
+            <end>52.25.122.31</end>
+            <start>52.25.122.31</start>
+        </ipRanges>
+        <ipRanges>
+            <end>52.24.91.157</end>
+            <start>52.24.91.157</start>
+        </ipRanges>
+        <ipRanges>
+            <end>52.11.152.229</end>
+            <start>52.11.152.229</start>
+        </ipRanges>
+        <ipRanges>
+            <end>49.255.255.255</end>
+            <start>49.0.0.0</start>
+        </ipRanges>
+        <ipRanges>
+            <end>47.255.255.255</end>
+            <start>47.0.0.0</start>
+        </ipRanges>
+        <ipRanges>
+            <end>45.121.14.192</end>
+            <start>45.121.14.192</start>
+        </ipRanges>
+        <ipRanges>
+            <end>42.255.255.255</end>
+            <start>42.0.0.0</start>
+        </ipRanges>
+        <ipRanges>
+            <description>AWS Migration Server</description>
+            <end>35.175.187.69</end>
+            <start>35.175.187.69</start>
+        </ipRanges>
+        <ipRanges>
+            <description>DocuSign Production NA and Demo</description>
+            <end>35.167.67.7</end>
+            <start>35.167.67.7</start>
+        </ipRanges>
+        <ipRanges>
+            <description>DocuSign Production NA and Demo</description>
+            <end>35.164.40.59</end>
+            <start>35.164.40.59</start>
+        </ipRanges>
+        <ipRanges>
+            <description>DocuSign Production NA and Demo</description>
+            <end>34.215.203.190</end>
+            <start>34.215.203.190</start>
+        </ipRanges>
+        <ipRanges>
+            <description>DocuSign Production NA and Demo</description>
+            <end>34.215.142.185</end>
+            <start>34.215.142.185</start>
+        </ipRanges>
+        <ipRanges>
+            <description>DocuSign Production NA and Demo</description>
+            <end>34.215.124.54</end>
+            <start>34.215.124.54</start>
+        </ipRanges>
+        <ipRanges>
+            <description>DocuSign Production NA and Demo</description>
+            <end>34.213.254.17</end>
+            <start>34.213.254.17</start>
+        </ipRanges>
+        <ipRanges>
+            <description>DocuSign Production NA and Demo</description>
+            <end>34.213.201.254</end>
+            <start>34.213.201.254</start>
+        </ipRanges>
+        <ipRanges>
+            <description>DocuSign Production NA and Demo</description>
+            <end>34.212.7.28</end>
+            <start>34.212.7.28</start>
+        </ipRanges>
+        <ipRanges>
+            <end>33.45.98.14</end>
+            <start>33.45.98.14</start>
+        </ipRanges>
+        <ipRanges>
+            <end>27.57.255.255</end>
+            <start>27.57.0.0</start>
+        </ipRanges>
+        <ipRanges>
+            <description>Phiz NYC</description>
+            <end>24.47.103.210</end>
+            <start>24.47.103.210</start>
+        </ipRanges>
+        <ipRanges>
+            <end>14.97.195.255</end>
+            <start>14.97.195.0</start>
+        </ipRanges>
+        <ipRanges>
+            <end>14.97.39.199</end>
+            <start>14.97.39.199</start>
+        </ipRanges>
+        <ipRanges>
+            <description>Phiz</description>
+            <end>14.255.255.255</end>
+            <start>14.0.0.0</start>
+        </ipRanges>
+        <ipRanges>
+            <description>DocuSign Production AU</description>
+            <end>13.72.249.142</end>
+            <start>13.72.249.142</start>
+        </ipRanges>
+        <ipRanges>
+            <description>DocuSign Production AU</description>
+            <end>13.72.248.93</end>
+            <start>13.72.248.93</start>
+        </ipRanges>
+        <ipRanges>
+            <description>DocuSign Production AU</description>
+            <end>13.70.141.103</end>
+            <start>13.70.141.103</start>
+        </ipRanges>
+        <ipRanges>
+            <description>DocuSign Production AU</description>
+            <end>13.70.136.159</end>
+            <start>13.70.136.159</start>
+        </ipRanges>
+        <ipRanges>
+            <description>IHG Atlanta Internal</description>
+            <end>12.45.77.255</end>
+            <start>12.45.77.0</start>
+        </ipRanges>
+        <ipRanges>
+            <description>IHG Concerto INT</description>
+            <end>10.236.1.132</end>
+            <start>10.236.1.131</start>
+        </ipRanges>
+        <ipRanges>
+            <description>IHG Concerto DEV</description>
+            <end>10.236.1.125</end>
+            <start>10.236.1.125</start>
+        </ipRanges>
+        <ipRanges>
+            <description>IHG Concerto PROD SC9</description>
+            <end>10.212.114.76</end>
+            <start>10.212.114.74</start>
+        </ipRanges>
+        <ipRanges>
+            <description>IHG Concerto Stage 2</description>
+            <end>10.211.164.84</end>
+            <start>10.211.164.83</start>
+        </ipRanges>
+        <ipRanges>
+            <description>IHG Concerto Stage 1</description>
+            <end>10.211.114.102</end>
+            <start>10.211.114.101</start>
+        </ipRanges>
+        <ipRanges>
+            <description>IHG Concerto PROD DC4</description>
+            <end>10.210.114.80</end>
+            <start>10.210.114.78</start>
+        </ipRanges>
+    </networkAccess>
     <passwordPolicies>
-        <complexity>NoRestriction</complexity>
+        <complexity>AlphaNumeric</complexity>
         <expiration>Never</expiration>
-        <historyRestriction>0</historyRestriction>
-        <lockoutInterval>FifteenMinutes</lockoutInterval>
-        <maxLoginAttempts>TenAttempts</maxLoginAttempts>
+        <historyRestriction>3</historyRestriction>
+        <lockoutInterval>Forever</lockoutInterval>
+        <maxLoginAttempts>ThreeAttempts</maxLoginAttempts>
         <minimumPasswordLength>8</minimumPasswordLength>
-        <minimumPasswordLifetime>false</minimumPasswordLifetime>
-        <obscureSecretAnswer>false</obscureSecretAnswer>
+        <minimumPasswordLifetime>true</minimumPasswordLifetime>
+        <obscureSecretAnswer>true</obscureSecretAnswer>
+        <passwordAssistanceMessage>Open a MySupport Incident</passwordAssistanceMessage>
+        <passwordAssistanceURL>https://ihgmarketplace--c.na71.content.force.com/servlet/servlet.FileDownload?file=0151G000001vurM</passwordAssistanceURL>
         <questionRestriction>DoesNotContainPassword</questionRestriction>
     </passwordPolicies>
+    <redirectBlockModeEnabled>false</redirectBlockModeEnabled>
     <sessionSettings>
-        <allowUserAuthenticationByCertificate>false</allowUserAuthenticationByCertificate>
+        <allowUserAuthenticationByCertificate>true</allowUserAuthenticationByCertificate>
+        <allowUserCertBasedAuthenticationWithOcspValidation>false</allowUserCertBasedAuthenticationWithOcspValidation>
         <canConfirmEmailChangeInLightningCommunities>true</canConfirmEmailChangeInLightningCommunities>
         <canConfirmIdentityBySmsOnly>true</canConfirmIdentityBySmsOnly>
         <disableTimeoutWarning>false</disableTimeoutWarning>
+        <enableBuiltInAuthenticator>false</enableBuiltInAuthenticator>
         <enableCSPOnEmail>true</enableCSPOnEmail>
         <enableCSRFOnGet>true</enableCSRFOnGet>
         <enableCSRFOnPost>true</enableCSRFOnPost>
@@ -32,14 +493,19 @@
         <enableClickjackNonsetupUser>false</enableClickjackNonsetupUser>
         <enableClickjackNonsetupUserHeaderless>false</enableClickjackNonsetupUserHeaderless>
         <enableClickjackSetup>true</enableClickjackSetup>
+        <enableCoepHeader>false</enableCoepHeader>
         <enableContentSniffingProtection>true</enableContentSniffingProtection>
+        <enableCoopHeader>false</enableCoopHeader>
         <enableLightningLogin>true</enableLightningLogin>
         <enableLightningLoginOnlyWithUserPerm>false</enableLightningLoginOnlyWithUserPerm>
+        <enableMFADirectUILoginOptIn>true</enableMFADirectUILoginOptIn>
+        <enableOauthCorsPolicy>false</enableOauthCorsPolicy>
         <enablePostForSessions>false</enablePostForSessions>
-        <enableSMSIdentity>true</enableSMSIdentity>
+        <enableSMSIdentity>false</enableSMSIdentity>
         <enableU2F>false</enableU2F>
-        <enableXssProtection>true</enableXssProtection>
+        <enableXssProtection>false</enableXssProtection>
         <enforceIpRangesEveryRequest>false</enforceIpRangesEveryRequest>
+        <enforceUserDeviceRevoked>false</enforceUserDeviceRevoked>
         <forceLogoutOnSessionTimeout>true</forceLogoutOnSessionTimeout>
         <forceRelogin>true</forceRelogin>
         <hasRetainedLoginHints>false</hasRetainedLoginHints>
@@ -48,16 +514,26 @@
         <identityConfirmationOnTwoFactorRegistrationEnabled>true</identityConfirmationOnTwoFactorRegistrationEnabled>
         <lockSessionsToDomain>true</lockSessionsToDomain>
         <lockSessionsToIp>false</lockSessionsToIp>
-        <lockerServiceCSP>true</lockerServiceCSP>
-        <redirectionWarning>true</redirectionWarning>
+        <lockerServiceCSP>false</lockerServiceCSP>
+        <lockerServiceNext>false</lockerServiceNext>
+        <lockerServiceNextControl>false</lockerServiceNextControl>
+        <logoutURL>https://ihgmarketplace.my.salesforce.com/</logoutURL>
+        <redirectBlockModeEnabled>false</redirectBlockModeEnabled>
+        <redirectionWarning>false</redirectionWarning>
         <referrerPolicy>true</referrerPolicy>
+        <referrerPolicyDirective>origin-when-cross-origin</referrerPolicyDirective>
         <requireHttpOnly>false</requireHttpOnly>
         <sessionTimeout>TwoHours</sessionTimeout>
+        <sidToken3rdPartyAuraApp>false</sidToken3rdPartyAuraApp>
+        <skipSFAWhenMFADirectUILogin>true</skipSFAWhenMFADirectUILogin>
+        <useLocalStorageForLogoutUrl>false</useLocalStorageForLogoutUrl>
     </sessionSettings>
     <singleSignOnSettings>
+        <enableCaseInsensitiveFederationID>false</enableCaseInsensitiveFederationID>
         <enableForceDelegatedCallout>false</enableForceDelegatedCallout>
         <enableMultipleSamlConfigs>true</enableMultipleSamlConfigs>
         <enableSamlJitProvisioning>false</enableSamlJitProvisioning>
-        <enableSamlLogin>false</enableSamlLogin>
+        <enableSamlLogin>true</enableSamlLogin>
+        <isLoginWithSalesforceCredentialsDisabled>true</isLoginWithSalesforceCredentialsDisabled>
     </singleSignOnSettings>
 </SecuritySettings>
