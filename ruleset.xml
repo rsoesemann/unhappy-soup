@@ -12,10 +12,25 @@
     <rule ref="category/apex/security.xml">
         <priority>1</priority>
 
+        <exclude name="ApexSharingViolations" /> <!-- PMD's own rule doesn't work with implements-->
         <exclude name="ApexCRUDViolation" /> <!-- PMD's own rules still ignore AccessLevels -->
-    </rule>   
+    </rule>  
 
-    <rule name="EnforceCrudFlsWithAccessLevel" language="apex" message="Enforce CRUD/FLS with explicit AccessLevels in DML and Queries" class="net.sourceforge.pmd.lang.rule.XPathRule">
+    <rule name="ApexSharingViolations" language="apex" message="Apex classes should make their sharing model explicit" class="net.sourceforge.pmd.lang.rule.XPathRule">
+        <priority>1</priority>  
+        <properties>
+            <property name="version" value="3.1"/>
+            <property name="xpath">
+            <value>
+                <![CDATA[
+                //UserClass/ModifierNode[@WithSharing=false() and @WithoutSharing=false() and @InheritedSharing=false()]
+                ]]>
+            </value>
+            </property>
+        </properties>
+    </rule> 
+
+    <rule name="ApexCRUDViolation" language="apex" message="Enforce CRUD/FLS with explicit AccessLevels in DML and Queries" class="net.sourceforge.pmd.lang.rule.XPathRule">
         <priority>1</priority>  
         <properties>
             <property name="version" value="3.1"/>
@@ -80,7 +95,7 @@
         <exclude name="AvoidDebugStatements" />   
     </rule>
 
-    <rule name="AvoidProductionDebugLogs" language="apex" message="Avoid leaving System.debug() statments in code as they negativly influence performance." class="net.sourceforge.pmd.lang.rule.XPathRule">
+    <rule name="AvoidDebugStatements" language="apex" message="Avoid leaving System.debug() statments in code as they negativly influence performance." class="net.sourceforge.pmd.lang.rule.XPathRule">
         <priority>2</priority>   
         <properties>
             <property name="version" value="2.0"/>
