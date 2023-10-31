@@ -11,19 +11,25 @@
     
     <rule ref="category/apex/security.xml">
         <priority>1</priority>
-        <!-- All are good and not controversial -->
-    </rule>    
 
-    <rule name="EnforceCrudFlsWithUserMode" language="apex" message="Enforce CRUD/FLS with USER MODE" class="net.sourceforge.pmd.lang.rule.XPathRule">
+        <exclude name="ApexCRUDViolation" /> <!-- PMD's own rules still ignore AccessLevels -->
+    </rule>   
+
+    <rule name="EnforceCrudFlsWithAccessLevel" language="apex" message="Enforce CRUD/FLS with explicit AccessLevels in DML and Queries" class="net.sourceforge.pmd.lang.rule.XPathRule">
+        <priority>1</priority>  
         <properties>
-            <property name="version" value="2.0"/>
+            <property name="version" value="3.1"/>
             <property name="xpath">
             <value>
                 <![CDATA[
                 //SoqlExpression[
-                    not(ends-with(lower-case(normalize-space(@Query)), 'with user_mode'))]
+                    let $query := lower-case(normalize-space(@Query))
+                    return not(ends-with($query, 'with user_mode') or ends-with($query, 'with system_mode'))]
                 |
-                //MethodCallExpression[lower-case(@FullMethodName)=('database.count', 'database.query', 'database.getquerylocator', 'search.query')]
+                //(DmlInsertStatement|DmlUpdateStatement|DmlUpsertStatement|DmlDeleteStatement|DmlUndeleteStatement)
+                    [not(.//ReferenceExpression[lower-case(@Image)='accesslevel'])] 
+                |
+                //MethodCallExpression[lower-case(@FullMethodName)=('database.insert', 'database.upsert', 'database.update', 'database.delete', 'search.undelete', 'database.countquery', 'database.query', 'database.queryWithBinds', 'database.getquerylocator', 'search.query')]
                     [not(VariableExpression/ReferenceExpression[lower-case(@Image)='accesslevel'])]
                 ]]>
             </value>
@@ -99,6 +105,18 @@
     <!-- CUSTOM RULES -->
 
     <!-- Apex Rules -->
+
+    <rule name="AvoidDoubleNegatives" language="apex" message="Avoid Negative Conditionals And Method Names" class="net.sourceforge.pmd.lang.rule.XPathRule">
+        <priority>2</priority>
+        <properties>
+            <property name="version" value="2.0"/>
+            <property name="xpath">
+                <value><![CDATA[
+                
+                ]]></value>
+            </property>
+        </properties>
+    </rule>
 
     <rule name="NullValueCheckBeforeEmptyCheck" language="apex" message="Apex code must check != null before .isEmpty()" class="net.sourceforge.pmd.lang.rule.XPathRule">
         <priority>2</priority>

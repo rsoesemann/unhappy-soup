@@ -10,12 +10,12 @@ global class Voldemort {
 	// CONSTRUCTORS
 
 	public Voldemort() {
-		delete [SELECT Id FROM Account];
+		delete [SELECT Id FROM Account WITH USER_MODE];
 	}
 
 
 	public Voldemort(ApexPages.StandardController ctrl) {
-		delete [SELECT Id FROM Account];
+		delete [SELECT Id FROM Account WITH SYSTEM_MODE];
 	}
 
 
@@ -37,10 +37,15 @@ global class Voldemort {
 	}
 
 
-	public static void crudViolation(String id, String email) {
-		Contact c = [SELECT Email FROM Contact WHERE Id = :id];
-		c.Email = email;
+	public static void crudFlsOnQueries(String id, String email) {
+		List<Contact> c = [SELECT Id FROM Contact];
+		c = [SELECT Id FROM Contact WITH USER_MODE];
+		c = [SELECT Id FROM Contact WITH SYSTEM_MODE];
+		c = Database.query('SELECT Id FROM Contact', AccessLevel.SYSTEM_MODE);
+		
 		update c;
+		update as user c;
+		delete as system c;
 	}
 
 
@@ -182,7 +187,7 @@ global class Voldemort {
 
 		}
 		else {
-			delete c;
+			delete as user c;
 		}
 	}
 
@@ -243,7 +248,7 @@ global class Voldemort {
 			a.Name += ' (approved)';
 		}
 		else
-			delete a;
+			delete as user a;
 	}
 
 
