@@ -121,18 +121,6 @@
 
     <!-- Apex Rules -->
 
-    <rule name="AvoidDoubleNegatives" language="apex" message="Avoid Negative Conditionals And Method Names" class="net.sourceforge.pmd.lang.rule.XPathRule">
-        <priority>2</priority>
-        <properties>
-            <property name="version" value="2.0"/>
-            <property name="xpath">
-                <value><![CDATA[
-                
-                ]]></value>
-            </property>
-        </properties>
-    </rule>
-
     <rule name="NullValueCheckBeforeEmptyCheck" language="apex" message="Apex code must check != null before .isEmpty()" class="net.sourceforge.pmd.lang.rule.XPathRule">
         <priority>2</priority>
         <properties>
