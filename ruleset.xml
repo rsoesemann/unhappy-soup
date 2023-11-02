@@ -23,7 +23,7 @@
             <property name="xpath">
             <value>
                 <![CDATA[
-                //UserClass/ModifierNode[@WithSharing=false() and @WithoutSharing=false() and @InheritedSharing=false()]
+                //UserClass/ModifierNode[@Test=false() and @WithSharing=false() and @InheritedSharing=false() and @WithoutSharing=false()]
                 ]]>
             </value>
             </property>
