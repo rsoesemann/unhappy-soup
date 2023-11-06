@@ -12,23 +12,8 @@
     <rule ref="category/apex/security.xml">
         <priority>1</priority>
 
-        <exclude name="ApexSharingViolations" /> <!-- PMD's own rule doesn't work with implements-->
-        <exclude name="ApexCRUDViolation" /> <!-- PMD's own rules still ignore AccessLevels -->
+        <exclude name="ApexCRUDViolation" /> <!-- Older PMD versions still ignore AccessLevels -->
     </rule>  
-
-    <rule name="ApexSharingViolations" language="apex" message="Apex classes should make their sharing model explicit" class="net.sourceforge.pmd.lang.rule.XPathRule">
-        <priority>1</priority>  
-        <properties>
-            <property name="version" value="3.1"/>
-            <property name="xpath">
-            <value>
-                <![CDATA[
-                //UserClass/ModifierNode[@Test=false() and @WithSharing=false() and @InheritedSharing=false() and @WithoutSharing=false()]
-                ]]>
-            </value>
-            </property>
-        </properties>
-    </rule> 
 
     <rule name="ApexCRUDViolation" language="apex" message="Enforce CRUD/FLS with explicit AccessLevels in DML and Queries" class="net.sourceforge.pmd.lang.rule.XPathRule">
         <priority>1</priority>  
@@ -51,7 +36,7 @@
             </property>
         </properties>
     </rule>
-    
+
     <rule ref="category/apex/bestpractices.xml">      
         <priority>2</priority>   
         
@@ -117,6 +102,7 @@
         <!-- Note: Stupid category but I think everything in there is valid and a 2 -->     
     </rule>
 
+
     <!-- CUSTOM RULES -->
 
     <!-- Apex Rules -->
@@ -176,26 +162,13 @@
             <property name="version" value="2.0"/>
             <property name="xpath">
                 <value><![CDATA[
-                    //*[self::CustomObject or self::CustomField][not(description)]
+                    //(CustomObject | CustomField)[not(description)]
                 ]]></value>
             </property>
         </properties>
     </rule>
 
-
     <!-- Profile and Permission Set Rules -->
-
-    <rule name="ModifyOrViewAllOnSysAdminProfile" language="xml" message="Only Admins can view and modify all data, if any other profile get these permissions, they could manipulate records that shouldn't" class="net.sourceforge.pmd.lang.rule.XPathRule">
-        <priority>1</priority>
-        <properties>
-            <property name="version" value="2.0"/>
-            <property name="xpath">
-                <value><![CDATA[
-                //Profile/userPermissions[ name/text[@Image='ModifyAllData' or @Image='ViewAllData'] and enabled/text[@Image='true'] and pmd:fileName() != 'System Administrator' ]
-                ]]> </value>
-            </property>
-        </properties>
-    </rule>
 
     <rule name="ModifyOrViewAllOnPermSet" language="xml" message="Allowing this user permission can give access and ability to modify sensitive data." class="net.sourceforge.pmd.lang.rule.XPathRule">
         <priority>1</priority>
@@ -204,6 +177,18 @@
             <property name="xpath">
                 <value><![CDATA[
                 //PermissionSet/userPermissions[ name/text[@Image='ModifyAllData' or @Image='ViewAllData'] and enabled/text[@Image='true'] ]
+                ]]> </value>
+            </property>
+        </properties>
+    </rule>
+
+    <rule name="ModifyOrViewAllOnSysAdminProfile" language="xml" message="Only Admins can view and modify all data, if any other profile get these permissions, they could manipulate records that shouldn't" class="net.sourceforge.pmd.lang.rule.XPathRule">
+        <priority>1</priority>
+        <properties>
+            <property name="version" value="2.0"/>
+            <property name="xpath">
+                <value><![CDATA[
+                //Profile/userPermissions[ name/text[@Image='ModifyAllData' or @Image='ViewAllData'] and enabled/text[@Image='true'] and pmd:fileName() != 'System Administrator' ]
                 ]]> </value>
             </property>
         </properties>
@@ -257,9 +242,6 @@
         </properties>
     </rule>
 
-
-
-<!--
     <rule name="EnforceTwoFactorAuthentication" language="xml" message="Production Orgs need to use Two-Factor Authentication" class="net.sourceforge.pmd.lang.rule.XPathRule">
         <priority>1</priority>
         <properties>
@@ -271,5 +253,4 @@
             </property>
         </properties>
     </rule>
--->
 </ruleset>
