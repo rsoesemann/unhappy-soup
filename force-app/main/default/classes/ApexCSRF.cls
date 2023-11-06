@@ -1,10 +1,10 @@
 public with sharing class ApexCSRF {
 
 	public ApexCSRF() {
-		delete [SELECT Id FROM Account];
+		insert new Accoun(Name='Acme');
 	}
 
 	public ApexCSRF(ApexPages.StandardController ctrl) {
-		delete [SELECT Id FROM Account];
+		insert new Accoun(Name='Acme');
 	}
 }
