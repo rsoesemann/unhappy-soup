@@ -221,6 +221,7 @@
     <!-- Org Setting Rules -->
 
     <rule name="TooLongSessionTimeout" language="xml" message="Allowing access to an inactive session for more than 12 hours is a security risk." class="net.sourceforge.pmd.lang.rule.XPathRule">
+        <priority>1</priority>
         <properties>
             <property name="version" value="2.0"/>
             <property name="xpath">
@@ -232,6 +233,7 @@
     </rule>
 
     <rule name="PasswordsNeverExpire" language="xml" message="Passwords need to expire every 90 days for security." class="net.sourceforge.pmd.lang.rule.XPathRule">
+        <priority>1</priority>
         <properties>
             <property name="version" value="2.0"/>
             <property name="xpath">
