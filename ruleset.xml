@@ -11,31 +11,7 @@
     
     <rule ref="category/apex/security.xml">
         <priority>1</priority>
-
-        <exclude name="ApexCRUDViolation" /> <!-- Older PMD versions still ignore AccessLevels -->
     </rule>  
-
-    <rule name="ApexCRUDViolation" language="apex" message="Enforce CRUD/FLS with explicit AccessLevels in DML and Queries" class="net.sourceforge.pmd.lang.rule.XPathRule">
-        <priority>1</priority>  
-        <properties>
-            <property name="version" value="3.1"/>
-            <property name="xpath">
-            <value>
-                <![CDATA[
-                //SoqlExpression[
-                    let $query := lower-case(normalize-space(@Query))
-                    return not(ends-with($query, 'with user_mode') or ends-with($query, 'with system_mode'))]
-                |
-                //(DmlInsertStatement|DmlUpdateStatement|DmlUpsertStatement|DmlDeleteStatement|DmlUndeleteStatement)
-                    [not(.//ReferenceExpression[lower-case(@Image)='accesslevel'])] 
-                |
-                //MethodCallExpression[lower-case(@FullMethodName)=('database.insert', 'database.upsert', 'database.update', 'database.delete', 'search.undelete', 'database.countquery', 'database.query', 'database.queryWithBinds', 'database.getquerylocator', 'search.query')]
-                    [not(VariableExpression/ReferenceExpression[lower-case(@Image)='accesslevel'])]
-                ]]>
-            </value>
-            </property>
-        </properties>
-    </rule>
 
     <rule ref="category/apex/bestpractices.xml">      
         <priority>2</priority>   
@@ -84,18 +60,29 @@
         <priority>2</priority>   
         <properties>
             <property name="version" value="2.0"/>
-            <property name="xpath">
-                <value><![CDATA[
+            <property name="xpath"><value><![CDATA[
                 //MethodCallExpression[lower-case(@FullMethodName)='system.debug'][count(*)=2]
-                ]]></value>
-            </property>
+            ]]></value></property>
         </properties>
     </rule>
 
     <rule ref="category/apex/codestyle.xml">      
         <priority>2</priority>  
-        <!-- Note: All are super crucial for readable, maintainable code -->     
+        
+        <!-- Improve by disallowing _ in Classnames -->
+        <exclude name="ClassNamingConventions" />  
     </rule>
+
+    <rule ref="category/apex/codestyle.xml/ClassNamingConventions">
+        <priority>2</priority> 
+        <properties>
+            <property name="testClassPattern" value="[A-Z][a-zA-Z0-9_]*" />
+            <property name="abstractClassPattern" value="[A-Z][a-zA-Z0-9]*" />
+            <property name="classPattern" value="[A-Z][a-zA-Z0-9]*" />
+            <property name="interfacePattern" value="[A-Z][a-zA-Z0-9]*" />
+            <property name="enumPattern" value="[A-Z][a-zA-Z0-9]*" />
+        </properties>
+    </rule>  
 
     <rule ref="category/apex/errorprone.xml">      
         <priority>2</priority>  
@@ -107,12 +94,56 @@
 
     <!-- Apex Rules -->
 
+    <rule name="CommentsAreAnExcuseForBadCodeAndTests" language="apex" message="Comments are often an excuse for bad code and tests" class="net.sourceforge.pmd.lang.rule.XPathRule">
+        <priority>3</priority>
+        <properties>
+            <property name="version" value="2.0"/>
+            <property name="xpath"><value><![CDATA[
+                //FormalComment
+            ]]></value></property>
+        </properties>
+    </rule>
+
+    <rule name="UnneedUseIfThisReducesReadability" language="apex" message="Unneeded use of this reduces readability" class="net.sourceforge.pmd.lang.rule.XPathRule">
+        <priority>3</priority>
+        <properties>
+            <property name="version" value="2.0"/>
+            <property name="xpath"><value><![CDATA[
+                //ThisVariableExpression[
+                    ancestor::ReferenceExpression[ancestor::MethodCallExpression] or
+                    ancestor::AssignmentExpression/VariableExpression[1][
+                        @Image != following-sibling::VariableExpression[1]/@Image
+                    ]
+                ]
+            ]]></value></property>
+        </properties>
+    </rule>
+
+    <rule name="WhatYouReturnCallItResultAndInitItFirst" language="apex" message="What you return call it result and declare it in the first line" class="net.sourceforge.pmd.lang.rule.XPathRule">
+        <priority>3</priority>
+        <properties>
+            <property name="version" value="2.0"/>
+            <property name="xpath"><value><![CDATA[
+                //ReturnStatement[
+                    lower-case(@Image) != 'result' 
+                    and
+                    ancestor::Method[
+                        @Synthetic = false() 
+                        and 
+                        lower-case(@ReturnType)!='void'
+                    ] 
+                    and
+                    preceding-sibling::VariableDeclarationStatements/VariableDeclaration[1][@Image != 'result'
+                ]]
+            ]]></value></property>
+        </properties>
+    </rule>
+
     <rule name="NullValueCheckBeforeEmptyCheck" language="apex" message="Apex code must check != null before .isEmpty()" class="net.sourceforge.pmd.lang.rule.XPathRule">
         <priority>2</priority>
         <properties>
             <property name="version" value="2.0"/>
-            <property name="xpath">
-                <value><![CDATA[
+            <property name="xpath"><value><![CDATA[
                 //BooleanExpression[@Op="&&"][
                     child::*[2][
                     self::BooleanExpression[@Op="!="][
@@ -121,8 +152,7 @@
                     ]
                     ]
                 ]
-                ]]></value>
-            </property>
+            ]]></value></property>
         </properties>
     </rule>
 
@@ -132,11 +162,9 @@
         <priority>3</priority>
         <properties>
             <property name="version" value="2.0"/>
-            <property name="xpath">
-                <value><![CDATA[
+            <property name="xpath"><value><![CDATA[
                 //apiVersion/text[number(@Image) < 50]
-                ]]></value>
-            </property>
+            ]]></value></property>
         </properties>
     </rule>
 
@@ -146,11 +174,9 @@
         <priority>2</priority>
         <properties>
             <property name="version" value="2.0"/>
-            <property name="xpath">
-                <value><![CDATA[
+            <property name="xpath"><value><![CDATA[
                     //Flow/loops//targetReference/text[@Image=//Flow/(recordCreates|recordDeletes|recordUpdates)/name/text/@Image]
-                ]]></value>
-            </property>
+            ]]></value></property>
         </properties>
     </rule>
 
@@ -160,11 +186,9 @@
         <priority>2</priority>
         <properties>
             <property name="version" value="2.0"/>
-            <property name="xpath">
-                <value><![CDATA[
+            <property name="xpath"><value><![CDATA[
                     //(CustomObject | CustomField)[not(description)]
-                ]]></value>
-            </property>
+            ]]></value></property>
         </properties>
     </rule>
 
@@ -174,8 +198,7 @@
         <priority>1</priority>
         <properties>
             <property name="version" value="2.0"/>
-            <property name="xpath">
-                <value><![CDATA[
+            <property name="xpath"><value><![CDATA[
                 //PermissionSet/userPermissions[ name/text[@Image='ModifyAllData' or @Image='ViewAllData'] and enabled/text[@Image='true'] ]
                 ]]> </value>
             </property>
@@ -186,8 +209,7 @@
         <priority>1</priority>
         <properties>
             <property name="version" value="2.0"/>
-            <property name="xpath">
-                <value><![CDATA[
+            <property name="xpath"><value><![CDATA[
                 //Profile/userPermissions[ name/text[@Image='ModifyAllData' or @Image='ViewAllData'] and enabled/text[@Image='true'] and pmd:fileName() != 'System Administrator' ]
                 ]]> </value>
             </property>
@@ -198,8 +220,7 @@
         <priority>1</priority>
         <properties>
             <property name="version" value="2.0"/>
-            <property name="xpath">
-                <value><![CDATA[
+            <property name="xpath"><value><![CDATA[
                 //Profile/userPermissions[ pmd:fileName() != 'System Administrator' and name/text[@Image='ManageUsers'] ]
                 ]]> </value>
             </property>
@@ -210,47 +231,8 @@
         <priority>1</priority>
         <properties>
             <property name="version" value="2.0"/>
-            <property name="xpath">
-                <value><![CDATA[
+            <property name="xpath"><value><![CDATA[
                 //Profile/userPermissions[ pmd:fileName() != 'System Administrator' and enabled/text[@Image='true'] and name/text[@Image='ViewSetup'] ]
-                ]]> </value>
-            </property>
-        </properties>
-    </rule>
-
-    <!-- Org Setting Rules -->
-
-    <rule name="TooLongSessionTimeout" language="xml" message="Allowing access to an inactive session for more than 12 hours is a security risk." class="net.sourceforge.pmd.lang.rule.XPathRule">
-        <priority>1</priority>
-        <properties>
-            <property name="version" value="2.0"/>
-            <property name="xpath">
-                <value><![CDATA[
-                //SecuritySettings/sessionTimeout[ text[@Image='24 hours of inactivity'] or text[@Image='12 hours of inactivity'] ]
-                ]]> </value>
-            </property>
-        </properties>
-    </rule>
-
-    <rule name="PasswordsNeverExpire" language="xml" message="Passwords need to expire every 90 days for security." class="net.sourceforge.pmd.lang.rule.XPathRule">
-        <priority>1</priority>
-        <properties>
-            <property name="version" value="2.0"/>
-            <property name="xpath">
-                <value><![CDATA[
-                //SecuritySettings/passwordPolicies/expiration[ text[@Image=('Never', 'SixMonths', 'OneYear')] ]
-                ]]> </value>
-            </property>
-        </properties>
-    </rule>
-
-    <rule name="EnforceTwoFactorAuthentication" language="xml" message="Production Orgs need to use Two-Factor Authentication" class="net.sourceforge.pmd.lang.rule.XPathRule">
-        <priority>1</priority>
-        <properties>
-            <property name="version" value="2.0"/>
-            <property name="xpath">
-                <value><![CDATA[
-                //SecuritySettings/sessionSettings/enableU2F/text[@Image='false']
                 ]]> </value>
             </property>
         </properties>
