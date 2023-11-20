@@ -110,9 +110,12 @@
             <property name="version" value="2.0"/>
             <property name="xpath"><value><![CDATA[
                 //ThisVariableExpression[
-                    ancestor::ReferenceExpression[ancestor::MethodCallExpression] or
+                    ancestor::ReferenceExpression[ancestor::MethodCallExpression] 
+                    or
                     ancestor::AssignmentExpression/VariableExpression[1][
-                        @Image != following-sibling::VariableExpression[1]/@Image
+                        @Image != following-sibling::VariableExpression[1]/@Image 
+                        or
+                        following-sibling::LiteralExpression
                     ]
                 ]
             ]]></value></property>
