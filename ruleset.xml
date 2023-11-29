@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<ruleset name="Opinionated PMD Ruleset" xmlns="http://pmd.sourceforge.net/ruleset/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 https://pmd.sourceforge.io/ruleset_2_0_0.xsd">
+<ruleset name="OpinionatedSalesforce" xmlns="http://pmd.sourceforge.net/ruleset/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 https://pmd.sourceforge.io/ruleset_2_0_0.xsd">
 
     <description>Opinionated PMD Ruleset</description>
 
@@ -94,7 +94,7 @@
 
     <!-- Apex Rules -->
 
-    <rule name="CommentsAreAnExcuseForBadCodeAndTests" language="apex" message="Comments are often an excuse for bad code and tests" class="net.sourceforge.pmd.lang.rule.XPathRule">
+    <rule name="CommentsOftenExcuseForBadCodeAndTests" language="apex" message="Comments are often an excuse for bad code and tests" class="net.sourceforge.pmd.lang.rule.XPathRule">
         <priority>3</priority>
         <properties>
             <property name="version" value="2.0"/>
@@ -104,25 +104,47 @@
         </properties>
     </rule>
 
-    <rule name="UnneedUseIfThisReducesReadability" language="apex" message="Unneeded use of this reduces readability" class="net.sourceforge.pmd.lang.rule.XPathRule">
+    <rule name="UnneededUseOfThisReducesReadability" language="apex" message="Unneeded use of this reduces readability" class="net.sourceforge.pmd.lang.rule.XPathRule">
         <priority>3</priority>
         <properties>
             <property name="version" value="2.0"/>
             <property name="xpath"><value><![CDATA[
-                //ThisVariableExpression[
-                    ancestor::ReferenceExpression[ancestor::MethodCallExpression] 
+                //ThisVariableExpression[not(
+                    ancestor::ReturnStatement
                     or
-                    ancestor::AssignmentExpression/VariableExpression[1][
-                        @Image != following-sibling::VariableExpression[1]/@Image 
-                        or
-                        following-sibling::LiteralExpression
-                    ]
+                    ancestor::MethodCallExpression[ReferenceExpression/@Image = VariableExpression/@Image]
+                    or 
+                    ancestor::AssignmentExpression[VariableExpression[1]/@Image = VariableExpression[2]/@Image]
+                )]
+            ]]></value></property>
+        </properties>
+    </rule>
+
+    <rule name="OnlyOneReturnPerMethod" language="apex" message="Method with multiple returns are confusing" class="net.sourceforge.pmd.lang.rule.XPathRule">
+        <priority>3</priority>
+        <properties>
+            <property name="version" value="2.0"/>
+            <property name="xpath"><value><![CDATA[
+                //Method[count(.//ReturnStatement) > 1
+            ]]></value></property>
+        </properties>
+    </rule>
+
+    <rule name="TestsShouldNotStartWithTest" language="apex" message="Test results are harder to grasp when tests start with the word test" class="net.sourceforge.pmd.lang.rule.XPathRule">
+        <priority>3</priority>
+        <properties>
+            <property name="version" value="2.0"/>
+            <property name="xpath"><value><![CDATA[
+                //Method[
+                    starts-with(lower-case(@Image), "test") 
+                    and 
+                    descendant::ModifierNode/Annotation[@Image="IsTest"]
                 ]
             ]]></value></property>
         </properties>
     </rule>
 
-    <rule name="WhatYouReturnCallItResultAndInitItFirst" language="apex" message="What you return call it result and declare it in the first line" class="net.sourceforge.pmd.lang.rule.XPathRule">
+    <rule name="DeclareWhatYouReturnFirstAndCallItResult" language="apex" message="What you return call it result and declare it in the first line" class="net.sourceforge.pmd.lang.rule.XPathRule">
         <priority>3</priority>
         <properties>
             <property name="version" value="2.0"/>
