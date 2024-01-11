@@ -125,7 +125,7 @@
         <properties>
             <property name="version" value="2.0"/>
             <property name="xpath"><value><![CDATA[
-                //Method[count(.//ReturnStatement) > 1]
+                //Method[count(.//ReturnStatement) > 1
             ]]></value></property>
         </properties>
     </rule>
@@ -143,7 +143,7 @@
             ]]></value></property>
         </properties>
     </rule>
-<!--
+
     <rule name="DeclareWhatYouReturnFirstAndCallItResult" language="apex" message="What you return call it result and declare it in the first line" class="net.sourceforge.pmd.lang.rule.XPathRule">
         <priority>3</priority>
         <properties>
@@ -163,7 +163,7 @@
             ]]></value></property>
         </properties>
     </rule>
--->
+
     <rule name="NullValueCheckBeforeEmptyCheck" language="apex" message="Apex code must check != null before .isEmpty()" class="net.sourceforge.pmd.lang.rule.XPathRule">
         <priority>2</priority>
         <properties>
