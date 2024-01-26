@@ -94,6 +94,17 @@
 
     <!-- Apex Rules -->
 
+    <rule name="PreferTypeForNameOverSObjectDescribe" language="apex" message="Better call '((SObject) Type.forName(typeName).newInstance()).getSObjectType();'" class="net.sourceforge.pmd.lang.rule.XPathRule">
+        <priority>2</priority>
+        <properties>
+            <property name="version" value="2.0"/>
+            <property name="xpath"><value><![CDATA[
+                //MethodCallExpression[lower-case(@MethodName)='get']/ReferenceExpression
+                /MethodCallExpression[lower-case(@MethodName)='getglobaldescribe']/ReferenceExpression[lower-case(@Image)='schema']
+            ]]></value></property>
+        </properties>
+    </rule>
+
     <rule name="CommentsOftenExcuseForBadCodeAndTests" language="apex" message="Comments are often an excuse for bad code and tests" class="net.sourceforge.pmd.lang.rule.XPathRule">
         <priority>3</priority>
         <properties>

@@ -206,6 +206,10 @@ global class Voldemort {
 
 	}
 
+	public void inefficientWayToGetMetadata() {
+		Schema.getGlobalDescribe().get('Account');
+		((SObject) Type.forName('Account').newInstance()).getSObjectType();
+	}
 
 	public void emptyTryOrFinally(Account a) {
 		try {
