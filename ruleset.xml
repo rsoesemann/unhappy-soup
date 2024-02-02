@@ -221,7 +221,7 @@
         <properties>
             <property name="version" value="2.0"/>
             <property name="xpath"><value><![CDATA[
-                    //(CustomObject | CustomField)[not(description)]
+                    //(CustomObject | CustomField | PermissionSet)[not(description/text)]
             ]]></value></property>
         </properties>
     </rule>
