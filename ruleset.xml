@@ -190,6 +190,25 @@
         </properties>
     </rule>
 
+    <!-- Deprecation Rules: Rules to move from old methods -->
+
+    <rule name="PreferAssertClass" language="apex" message="Use the Assert class over System. https://developer.salesforce.com/docs/atlas.en-us.apexref.meta/apexref/apex_class_System_Assert.htm#apex_class_System_Assert" class="net.sourceforge.pmd.lang.rule.XPathRule">
+        <priority>3</priority>
+        <properties>
+            <property name="deprecatedMethods" type="List[String]" value="
+            system.assert,
+            system.assertequals,
+            system.assertnotequals
+            " description="List of deprecated methods. {class.method} format"/>
+            <property name="version" value="2.0"/>
+            <property name="xpath">
+                <value><![CDATA[
+                    //MethodCallExpression[lower-case(@FullMethodName)=$deprecatedMethods]
+                ]]></value>
+            </property>
+        </properties>
+    </rule>
+
     <!-- Metadata XML Rules -->
 
     <rule name="BumpApiVersion" language="xml" message="Metadata should use the latest API version." class="net.sourceforge.pmd.lang.rule.XPathRule">
