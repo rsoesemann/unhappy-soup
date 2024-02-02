@@ -56,7 +56,7 @@
         <exclude name="AvoidDebugStatements" />   
     </rule>
 
-    <rule name="AvoidDebugStatements" language="apex" message="Avoid leaving System.debug() statments in code as they negativly influence performance." class="net.sourceforge.pmd.lang.rule.XPathRule">
+    <rule name="AvoidDebugStatements" language="apex" message="Avoid leaving System.debug() statements in code as they negatively influence performance." class="net.sourceforge.pmd.lang.rule.XPathRule">
         <priority>2</priority>   
         <properties>
             <property name="version" value="2.0"/>
@@ -167,7 +167,7 @@
                         lower-case(@ReturnType)!='void'
                     ] 
                     and
-                    preceding-sibling::VariableDeclarationStatements/VariableDeclaration[1][@Image != 'result'
+                    ../VariableDeclarationStatements[1]/VariableDeclaration[@Image != 'result']
                 ]]
             ]]></value></property>
         </properties>
