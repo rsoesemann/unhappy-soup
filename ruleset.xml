@@ -31,7 +31,7 @@
     <rule ref="category/apex/design.xml">      
         <priority>2</priority>  
 
-        <!-- Note: Cognitive Complexity covers all of that better -->     
+        <!-- Note: Cognitive Complexity covers all of that better -->      
         <exclude name="AvoidDeeplyNestedIfStmts" />
         <exclude name="StdCyclomaticComplexity" />
         <exclude name="CyclomaticComplexity" />
@@ -136,7 +136,7 @@
         <properties>
             <property name="version" value="2.0"/>
             <property name="xpath"><value><![CDATA[
-                //Method[count(.//ReturnStatement) > 1
+                //Method[count(.//ReturnStatement) > 1]
             ]]></value></property>
         </properties>
     </rule>
@@ -149,7 +149,7 @@
                 //Method[
                     starts-with(lower-case(@Image), "test") 
                     and 
-                    descendant::ModifierNode/Annotation[@Image="IsTest"]
+                    descendant::ModifierNode/Annotation[@Name="IsTest"]
                 ]
             ]]></value></property>
         </properties>
@@ -161,8 +161,6 @@
             <property name="version" value="2.0"/>
             <property name="xpath"><value><![CDATA[
                 //ReturnStatement[
-                    lower-case(@Image) != 'result' 
-                    and
                     ancestor::Method[
                         @Synthetic = false() 
                         and 
