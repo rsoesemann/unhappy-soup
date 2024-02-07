@@ -94,7 +94,7 @@
 
     <!-- Apex Rules -->
 
-    <rule name="PreferTypeForNameOverSObjectDescribe" language="apex" message="Better call '((SObject) Type.forName(typeName).newInstance()).getSObjectType();'" class="net.sourceforge.pmd.lang.rule.XPathRule">
+    <rule name="UseTypeForNameOrDeferredFor" language="apex" message="" class="net.sourceforge.pmd.lang.rule.XPathRule">
         <priority>2</priority>
         <properties>
             <property name="version" value="2.0"/>
@@ -154,7 +154,7 @@
             ]]></value></property>
         </properties>
     </rule>
-
+<!-- Most people find this to controversial ;-) 
     <rule name="DeclareWhatYouReturnFirstAndCallItResult" language="apex" message="What you return call it result and declare it in the first line" class="net.sourceforge.pmd.lang.rule.XPathRule">
         <priority>3</priority>
         <properties>
@@ -174,7 +174,7 @@
             ]]></value></property>
         </properties>
     </rule>
-
+-->
     <rule name="NullValueCheckBeforeEmptyCheck" language="apex" message="Apex code must check != null before .isEmpty()" class="net.sourceforge.pmd.lang.rule.XPathRule">
         <priority>2</priority>
         <properties>
