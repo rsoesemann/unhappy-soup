@@ -211,7 +211,7 @@
         <properties>
             <property name="version" value="2.0"/>
             <property name="xpath"><value><![CDATA[
-                    //Flow/loops//targetReference/text[@Image=//Flow/(recordCreates|recordDeletes|recordUpdates)/name/text/@Image]
+                    //Flow/loops//targetReference[not(ancestor::noMoreValuesConnector)]/text[@Image=//Flow/(recordCreates|recordDeletes|recordUpdates)/name/text/@Image]
             ]]></value></property>
         </properties>
     </rule>
