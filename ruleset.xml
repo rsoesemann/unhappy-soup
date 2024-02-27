@@ -31,7 +31,7 @@
     <rule ref="category/apex/design.xml">      
         <priority>2</priority>  
 
-        <!-- Note: Cognitive Complexity covers all of that better -->     
+        <!-- Note: Cognitive Complexity covers all of that better -->      
         <exclude name="AvoidDeeplyNestedIfStmts" />
         <exclude name="StdCyclomaticComplexity" />
         <exclude name="CyclomaticComplexity" />
@@ -56,7 +56,7 @@
         <exclude name="AvoidDebugStatements" />   
     </rule>
 
-    <rule name="AvoidDebugStatements" language="apex" message="Avoid leaving System.debug() statments in code as they negativly influence performance." class="net.sourceforge.pmd.lang.rule.XPathRule">
+    <rule name="AvoidDebugStatements" language="apex" message="Avoid leaving System.debug() statements in code as they negatively influence performance." class="net.sourceforge.pmd.lang.rule.XPathRule">
         <priority>2</priority>   
         <properties>
             <property name="version" value="2.0"/>
@@ -136,7 +136,7 @@
         <properties>
             <property name="version" value="2.0"/>
             <property name="xpath"><value><![CDATA[
-                //Method[count(.//ReturnStatement) > 1
+                //Method[count(.//ReturnStatement) > 1]
             ]]></value></property>
         </properties>
     </rule>
@@ -149,7 +149,7 @@
                 //Method[
                     starts-with(lower-case(@Image), "test") 
                     and 
-                    descendant::ModifierNode/Annotation[@Image="IsTest"]
+                    descendant::ModifierNode/Annotation[@Name="IsTest"]
                 ]
             ]]></value></property>
         </properties>
@@ -161,15 +161,13 @@
             <property name="version" value="2.0"/>
             <property name="xpath"><value><![CDATA[
                 //ReturnStatement[
-                    lower-case(@Image) != 'result' 
-                    and
                     ancestor::Method[
                         @Synthetic = false() 
                         and 
                         lower-case(@ReturnType)!='void'
                     ] 
                     and
-                    preceding-sibling::VariableDeclarationStatements/VariableDeclaration[1][@Image != 'result'
+                    ../VariableDeclarationStatements[1]/VariableDeclaration[@Image != 'result']
                 ]]
             ]]></value></property>
         </properties>
@@ -189,6 +187,25 @@
                     ]
                 ]
             ]]></value></property>
+        </properties>
+    </rule>
+
+    <!-- Deprecation Rules: Rules to move from old methods -->
+
+    <rule name="PreferAssertClass" language="apex" message="Use the Assert class over System. https://developer.salesforce.com/docs/atlas.en-us.apexref.meta/apexref/apex_class_System_Assert.htm#apex_class_System_Assert" class="net.sourceforge.pmd.lang.rule.XPathRule">
+        <priority>3</priority>
+        <properties>
+            <property name="deprecatedMethods" type="List[String]" value="
+            system.assert,
+            system.assertequals,
+            system.assertnotequals
+            " description="List of deprecated methods. {class.method} format"/>
+            <property name="version" value="2.0"/>
+            <property name="xpath">
+                <value><![CDATA[
+                    //MethodCallExpression[lower-case(@FullMethodName)=$deprecatedMethods]
+                ]]></value>
+            </property>
         </properties>
     </rule>
 
@@ -223,7 +240,7 @@
         <properties>
             <property name="version" value="2.0"/>
             <property name="xpath"><value><![CDATA[
-                    //(CustomObject | CustomField)[not(description)]
+                    //(CustomObject | CustomField | PermissionSet)[not(description/text)]
             ]]></value></property>
         </properties>
     </rule>
