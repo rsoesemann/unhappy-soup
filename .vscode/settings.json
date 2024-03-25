@@ -5,5 +5,5 @@
     "apexPMD.rulesets": [
         "ruleset.xml"
     ],
-    "apexPMD.pmdBinPath": "/Users/rsoesemann/dev/pmd-bin-7.0.0-rc4"
+    "apexPMD.pmdBinPath": "/Users/rsoesemann/dev/pmd-bin-7.0.0"
 }
