@@ -7,4 +7,9 @@ public with sharing class ApexBadCrypto {
 
 		return Crypto.encrypt('AES128', key, iv, secret);
 	}
+
+    public static void exampleMethod() {
+        List<CBConfig__c> configs = [SELECT Id FROM CBConfig__c WITH USER_MODE];
+		delete as user configs;
+    }
 }

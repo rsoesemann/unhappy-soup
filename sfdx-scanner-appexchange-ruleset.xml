@@ -7,11 +7,10 @@
     <!-- APEX RULES -->
 
     <!--AvoidUnsafeSystemSetPassword-->
-	<rule language="apex" class="net.sourceforge.pmd.lang.rule.XPathRule" name="AvoidUnsafeSystemSetPassword" message="Before calling System.setPassword() in Apex, perform necessary authorization checks." externalInfoUrl="https://github.com/forcedotcom/sfdx-scanner/blob/dev/pmd-appexchange/docs/AvoidUnsafeSystemSetPassword.md">
+	<rule language="apex" class="net.sourceforge.pmd.lang.rule.xpath.XPathRule" name="AvoidUnsafeSystemSetPassword" message="Before calling System.setPassword() in Apex, perform necessary authorization checks." externalInfoUrl="https://github.com/forcedotcom/sfdx-scanner/blob/dev/pmd-appexchange/docs/AvoidUnsafeSystemSetPassword.md">
 		<description>Detects where System.setPassword() exists in Apex code. Use this method with caution.</description>
 		<priority>1</priority>
 		<properties>
-			<property name="version" value="2.0"/>
 			<property name="xpath">
 				<value>
 					<![CDATA[
@@ -26,11 +25,10 @@
 	</rule>
 
 	<!--AvoidCallingSystemResetPasswordWithEmailTemplate-->
-	<rule language="apex" class="net.sourceforge.pmd.lang.rule.XPathRule" name="AvoidCallingSystemResetPasswordWithEmailTemplate" message="Before calling System.resetPasswordWithEmailTemplate(), perform the necessary authorization checks." externalInfoUrl="https://github.com/forcedotcom/sfdx-scanner/blob/dev/pmd-appexchange/docs/AvoidCallingSystemResetPasswordWithEmailTemplate.md">
+	<rule language="apex" class="net.sourceforge.pmd.lang.rule.xpath.XPathRule" name="AvoidCallingSystemResetPasswordWithEmailTemplate" message="Before calling System.resetPasswordWithEmailTemplate(), perform the necessary authorization checks." externalInfoUrl="https://github.com/forcedotcom/sfdx-scanner/blob/dev/pmd-appexchange/docs/AvoidCallingSystemResetPasswordWithEmailTemplate.md">
 		<description>Detects where System.resetPasswordWithEmailTemplate() exists in Apex code. Use this method with caution.</description>
 		<priority>1</priority>
 		<properties>
-			<property name="version" value="2.0"/>
 			<property name="xpath">
 				<value>
 					<![CDATA[
@@ -45,11 +43,10 @@
 	</rule>
 
 	<!--AvoidUnsafeSystemMovePassword-->
-	<rule language="apex" externalInfoUrl="https://github.com/forcedotcom/sfdx-scanner/blob/dev/pmd-appexchange/docs/AvoidUnsafeSystemMovePassword.md" class="net.sourceforge.pmd.lang.rule.XPathRule" name="AvoidUnsafeSystemMovePassword" message="Before calling System.movePassword(), perform the necessary authorization checks.">
+	<rule language="apex" externalInfoUrl="https://github.com/forcedotcom/sfdx-scanner/blob/dev/pmd-appexchange/docs/AvoidUnsafeSystemMovePassword.md" class="net.sourceforge.pmd.lang.rule.xpath.XPathRule" name="AvoidUnsafeSystemMovePassword" message="Before calling System.movePassword(), perform the necessary authorization checks.">
 		<description>Detects where System.movePassword() is used in Apex code. Use this method with caution.</description>
 		<priority>1</priority>
 		<properties>
-			<property name="version" value="2.0"/>
 			<property name="xpath">
 				<value>
 					<![CDATA[
@@ -64,14 +61,13 @@
 	</rule>
 
 	<!--AvoidChangeProtectionUnprotected-->
-	<rule language="apex" externalInfoUrl="https://github.com/forcedotcom/sfdx-scanner/blob/dev/pmd-appexchange/docs/AvoidChangeProtectionUnprotected.md" class="net.sourceforge.pmd.lang.rule.XPathRule" name="AvoidChangeProtectionUnprotected" message="Update your code to avoid using FeatureManagement.changeProtection called by an UnProtected argument.">
+	<rule language="apex" externalInfoUrl="https://github.com/forcedotcom/sfdx-scanner/blob/dev/pmd-appexchange/docs/AvoidChangeProtectionUnprotected.md" class="net.sourceforge.pmd.lang.rule.xpath.XPathRule" name="AvoidChangeProtectionUnprotected" message="Update your code to avoid using FeatureManagement.changeProtection called by an UnProtected argument.">
 		<!-- TBD
         May be use only one rule? "SFCustom-DangerousMethod-changeProtection"
         -->
 		<description>Detects potential misuse of FeatureManagement.changeProtection.</description>
 		<priority>1</priority>
 		<properties>
-			<property name="version" value="2.0"/>
 			<property name="xpath">
 				<value>
 					<![CDATA[
@@ -87,7 +83,7 @@
 	</rule>
 
 	<!--AvoidUnauthorizedGetSessionIdInApex-->
-	<rule language="apex" class="net.sourceforge.pmd.lang.rule.XPathRule" name="AvoidUnauthorizedGetSessionIdInApex" message="Use of UserInfo.getSessionId might not be authorized." externalInfoUrl="https://github.com/forcedotcom/sfdx-scanner/blob/dev/pmd-appexchange/docs/AvoidUnauthorizedGetSessionIdInApex.md">
+	<rule language="apex" class="net.sourceforge.pmd.lang.rule.xpath.XPathRule" name="AvoidUnauthorizedGetSessionIdInApex" message="Use of UserInfo.getSessionId might not be authorized." externalInfoUrl="https://github.com/forcedotcom/sfdx-scanner/blob/dev/pmd-appexchange/docs/AvoidUnauthorizedGetSessionIdInApex.md">
 		<!--
 		TBD: Add extUrlInfo
 		Add links to OAuth Workflows
@@ -95,7 +91,6 @@
 		<description>Detects use of UserInfo.getSessionId() to retrieve a session ID.</description>
 		<priority>3</priority>
 		<properties>
-			<property name="version" value="2.0"/>
 			<property name="xpath">
 				<value>
 					<![CDATA[
@@ -109,11 +104,10 @@
 	</rule>
 
 	<!--AvoidUnsafeSystemResetPassword-->
-	<rule language="apex" class="net.sourceforge.pmd.lang.rule.XPathRule" name="AvoidUnsafeSystemResetPassword" message="Before calling System.resetPassword(), perform the necessary authorization checks." externalInfoUrl="https://github.com/forcedotcom/sfdx-scanner/blob/dev/pmd-appexchange/docs/AvoidUnsafeSystemResetPassword.md">
+	<rule language="apex" class="net.sourceforge.pmd.lang.rule.xpath.XPathRule" name="AvoidUnsafeSystemResetPassword" message="Before calling System.resetPassword(), perform the necessary authorization checks." externalInfoUrl="https://github.com/forcedotcom/sfdx-scanner/blob/dev/pmd-appexchange/docs/AvoidUnsafeSystemResetPassword.md">
 		<description>Detects where System.resetPassword() exists in Apex code. Use this method with caution.</description>
 		<priority>1</priority>
 		<properties>
-			<property name="version" value="2.0"/>
 			<property name="xpath">
 				<value>
 					<![CDATA[
@@ -128,11 +122,10 @@
 	</rule>
 
 	<!--AvoidWithoutSharingInRestApiController-->
-	<rule language="apex" class="net.sourceforge.pmd.lang.rule.XPathRule" name="AvoidWithoutSharingInRestApiController" message="Use &quot;with sharing&quot; in Apex classes with the @RestResource annotation." externalInfoUrl="https://github.com/forcedotcom/sfdx-scanner/blob/dev/pmd-appexchange/docs/AvoidWithoutSharingInRestApiController.md">
+	<rule language="apex" class="net.sourceforge.pmd.lang.rule.xpath.XPathRule" name="AvoidWithoutSharingInRestApiController" message="Use &quot;with sharing&quot; in Apex classes with the @RestResource annotation." externalInfoUrl="https://github.com/forcedotcom/sfdx-scanner/blob/dev/pmd-appexchange/docs/AvoidWithoutSharingInRestApiController.md">
 		<description>Detects use of &quot;without sharing&quot; in an Apex class exposed with the @RestResource annotation.</description>
 		<priority>2</priority>
 		<properties>
-			<property name="version" value="2.0"/>
 			<property name="xpath">
 				<value>
 					<![CDATA[
@@ -148,12 +141,11 @@
 	</rule>
 
 	<!--AvoidHardcodedCredentials-->
-	<rule language="apex" class="net.sourceforge.pmd.lang.rule.XPathRule" externalInfoUrl="https://github.com/forcedotcom/sfdx-scanner/blob/dev/pmd-appexchange/docs/AvoidHardcodedCredentials.md" name="AvoidHardcodedCredentials" message="Remove hard-coded credentials from source code.">
+	<rule language="apex" class="net.sourceforge.pmd.lang.rule.xpath.XPathRule" externalInfoUrl="https://github.com/forcedotcom/sfdx-scanner/blob/dev/pmd-appexchange/docs/AvoidHardcodedCredentials.md" name="AvoidHardcodedCredentials" message="Remove hard-coded credentials from source code.">
 		<description>Identifies hard-coded credentials in source code that must be protected using Protected Custom metadata or Protected Custom settings.</description>
 		<priority>3</priority>
 
 		<properties>
-			<property name="version" value="2.0"/>
 			<property name="xpath">
 				<value>
 					<!--
@@ -195,11 +187,10 @@
 	</rule>
 
 	<!--LimitPermissionSetAssignment-->
-	<rule language="apex" externalInfoUrl="https://github.com/forcedotcom/sfdx-scanner/blob/dev/pmd-appexchange/docs/LimitPermissionSetAssignment.md" class="net.sourceforge.pmd.lang.rule.XPathRule" name="LimitPermissionSetAssignment" message="Ensure that DML operations against PermissionSetAssignment use trusted input.">
+	<rule language="apex" externalInfoUrl="https://github.com/forcedotcom/sfdx-scanner/blob/dev/pmd-appexchange/docs/LimitPermissionSetAssignment.md" class="net.sourceforge.pmd.lang.rule.xpath.XPathRule" name="LimitPermissionSetAssignment" message="Ensure that DML operations against PermissionSetAssignment use trusted input.">
 		<description>Detects usage of PermissionSetAssignment. Use caution when allowing DML operations against the PermissionSetAssignment object.</description>
 		<priority>2</priority>
 		<properties>
-			<property name="version" value="2.0"/>
 			<property name="xpath">
 				<value>
 					<![CDATA[
@@ -223,11 +214,10 @@
 	</rule>
 
 	<!--AvoidChangeProtection-->
-	<rule language="apex" externalInfoUrl="https://github.com/forcedotcom/sfdx-scanner/blob/dev/pmd-appexchange/docs/AvoidChangeProtection.md" class="net.sourceforge.pmd.lang.rule.XPathRule" name="AvoidChangeProtection" message="Update your code to avoid using FeatureManagement.changeProtection.">
+	<rule language="apex" externalInfoUrl="https://github.com/forcedotcom/sfdx-scanner/blob/dev/pmd-appexchange/docs/AvoidChangeProtection.md" class="net.sourceforge.pmd.lang.rule.xpath.XPathRule" name="AvoidChangeProtection" message="Update your code to avoid using FeatureManagement.changeProtection.">
 		<description>Detects potential misuse of FeatureManagement.changeProtection.</description>
 		<priority>2</priority>
 		<properties>
-			<property name="version" value="2.0"/>
 			<property name="xpath">
 				<value>
 					<![CDATA[
@@ -242,11 +232,10 @@
 	</rule>
 
 	<!--AvoidUnauthorizedApiSessionIdInApex-->
-	<rule language="apex" class="net.sourceforge.pmd.lang.rule.XPathRule" name="AvoidUnauthorizedApiSessionIdInApex" message="Use of API.Session_ID might not be authorized." externalInfoUrl="https://github.com/forcedotcom/sfdx-scanner/blob/dev/pmd-appexchange/docs/AvoidUnauthorizedApiSessionIdInApex.md">
+	<rule language="apex" class="net.sourceforge.pmd.lang.rule.xpath.XPathRule" name="AvoidUnauthorizedApiSessionIdInApex" message="Use of API.Session_ID might not be authorized." externalInfoUrl="https://github.com/forcedotcom/sfdx-scanner/blob/dev/pmd-appexchange/docs/AvoidUnauthorizedApiSessionIdInApex.md">
 		<description>Detects use of Api.Session_ID to retrieve a session ID.</description>
 		<priority>2</priority>
 		<properties>
-			<property name="version" value="2.0"/>
 			<property name="xpath">
 				<value>
 					<![CDATA[
@@ -262,7 +251,7 @@
     <!-- VISUALFORCE RULES -->
 
     <!--AvoidUnauthorizedGetSessionIdInVisualforce-->
-    <rule language="vf" class="net.sourceforge.pmd.lang.rule.XPathRule" name="AvoidUnauthorizedGetSessionIdInVisualforce" message="Use of session ID with GETSESSIONID is not authorized." externalInfoUrl="https://github.com/forcedotcom/sfdx-scanner/blob/dev/pmd-appexchange/docs/AvoidUnauthorizedGetSessionIdInVisualforce.md">
+    <rule language="vf" class="net.sourceforge.pmd.lang.rule.xpath.XPathRule" name="AvoidUnauthorizedGetSessionIdInVisualforce" message="Use of session ID with GETSESSIONID is not authorized." externalInfoUrl="https://github.com/forcedotcom/sfdx-scanner/blob/dev/pmd-appexchange/docs/AvoidUnauthorizedGetSessionIdInVisualforce.md">
         <!--
             TBD: Add extUrlInfo
             Add links to OAuth Workflows
@@ -289,7 +278,7 @@
     </rule>
 
     <!--AvoidUnauthorizedApiSessionIdVisualforce-->
-    <rule language="vf" class="net.sourceforge.pmd.lang.rule.XPathRule" name="AvoidUnauthorizedApiSessionIdVisualforce" message="Retrieval of session ID using API.Session_ID is not authorized." externalInfoUrl="https://github.com/forcedotcom/sfdx-scanner/blob/dev/pmd-appexchange/docs/AvoidUnauthorizedApiSessionIdVisualforce.md">
+    <rule language="vf" class="net.sourceforge.pmd.lang.rule.xpath.XPathRule" name="AvoidUnauthorizedApiSessionIdVisualforce" message="Retrieval of session ID using API.Session_ID is not authorized." externalInfoUrl="https://github.com/forcedotcom/sfdx-scanner/blob/dev/pmd-appexchange/docs/AvoidUnauthorizedApiSessionIdVisualforce.md">
         <!--
         TBD: Add extUrlInfo
         Add links to OAuth Workflows
@@ -316,11 +305,10 @@
     <!-- JAVASCRIPT -->
 
     <!--AvoidLwcBubblesComposedTrue-->
-	<rule language="ecmascript" externalInfoUrl="https://github.com/forcedotcom/sfdx-scanner/blob/dev/pmd-appexchange/docs/AvoidLwcBubblesComposedTrue.md" class="net.sourceforge.pmd.lang.rule.XPathRule" name="AvoidLwcBubblesComposedTrue" message="Avoid setting both Lightning Web component bubbles and composed=true at the same time.">
+	<rule language="ecmascript" externalInfoUrl="https://github.com/forcedotcom/sfdx-scanner/blob/dev/pmd-appexchange/docs/AvoidLwcBubblesComposedTrue.md" class="net.sourceforge.pmd.lang.rule.xpath.XPathRule" name="AvoidLwcBubblesComposedTrue" message="Avoid setting both Lightning Web component bubbles and composed=true at the same time.">
 		<description>Detects Lightning Web Component event configurations where bubbles and composed are both set to true. To avoid sharing sensitive information unintentionally, use this configuration with caution.</description>
 		<priority>3</priority>
 		<properties>
-			<property name="version" value="2.0"/>
 			<property name="xpath">
 				<value>
 					<![CDATA[
@@ -338,7 +326,7 @@
     <!-- HTML -->
 
     <!--UseLwcDomManual-->
-	<rule language="html" class="net.sourceforge.pmd.lang.rule.XPathRule" externalInfoUrl="https://github.com/forcedotcom/sfdx-scanner/blob/dev/pmd-appexchange/docs/UseLwcDomManual.md" name="UseLwcDomManual" message="Protect against XSS when using lwc:dom=&quot;manual&quot;.">
+	<rule language="html" class="net.sourceforge.pmd.lang.rule.xpath.XPathRule" externalInfoUrl="https://github.com/forcedotcom/sfdx-scanner/blob/dev/pmd-appexchange/docs/UseLwcDomManual.md" name="UseLwcDomManual" message="Protect against XSS when using lwc:dom=&quot;manual&quot;.">
 		<description>Detects instances of lwc:dom=&quot;manual&quot; that could allow unintentional or malicious user input. Don't allow user input on these elements.</description>
 		<priority>3</priority>
 		<example>
@@ -349,7 +337,6 @@
             ]]>
 		</example>
 		<properties>
-			<property name="version" value="2.0"/>
 			<property name="xpath">
 				<value>
 					<![CDATA[
@@ -363,11 +350,10 @@
     <!-- Metadata XML -->
 
 	<!--AvoidLmcIsExposedTrue-->
-	<rule language="xml" class="net.sourceforge.pmd.lang.rule.XPathRule" name="AvoidLmcIsExposedTrue" message="Use Lightning Message Channel with isExposed set to false." externalInfoUrl="https://github.com/forcedotcom/sfdx-scanner/blob/dev/pmd-appexchange/docs/AvoidLmcIsExposedTrue.md">
+	<rule language="xml" class="net.sourceforge.pmd.lang.rule.xpath.XPathRule" name="AvoidLmcIsExposedTrue" message="Use Lightning Message Channel with isExposed set to false." externalInfoUrl="https://github.com/forcedotcom/sfdx-scanner/blob/dev/pmd-appexchange/docs/AvoidLmcIsExposedTrue.md">
 		<description>Detects a Lightning Message Channel with isExposed=true, which isn’t allowed in managed packages.</description>
 		<priority>2</priority>
 		<properties>
-			<property name="version" value="2.0"/>
 			<property name="xpath">
 				<value>
 					<![CDATA[
@@ -379,7 +365,7 @@
 	</rule>
 
 	<!--AvoidApiSessionId-->
-	<rule language="xml" class="net.sourceforge.pmd.lang.rule.XPathRule" name="AvoidApiSessionId" message="Session ID use is not approved." externalInfoUrl="https://github.com/forcedotcom/sfdx-scanner/blob/dev/pmd-appexchange/docs/AvoidApiSessionId.md">
+	<rule language="xml" class="net.sourceforge.pmd.lang.rule.xpath.XPathRule" name="AvoidApiSessionId" message="Session ID use is not approved." externalInfoUrl="https://github.com/forcedotcom/sfdx-scanner/blob/dev/pmd-appexchange/docs/AvoidApiSessionId.md">
 		<!--
 		TBD: Add extUrlInfo
 		Add links to OAuth Workflows
@@ -387,7 +373,6 @@
 		<description>Detects use of Api.Session_ID to retrieve a session ID.</description>
 		<priority>2</priority>
 		<properties>
-			<property name="version" value="2.0"/>
 			<property name="xpath">
 				<value>
 					<![CDATA[
@@ -403,11 +388,10 @@
 	</rule>
 
 	<!--UpgradeLwcLockerSecuritySupport-->
-	<rule language="xml" class="net.sourceforge.pmd.lang.rule.XPathRule" name="UpgradeLwcLockerSecuritySupport" message="To enable Lightning Locker, update the API version to version 40 or greater." externalInfoUrl="https://github.com/forcedotcom/sfdx-scanner/blob/dev/pmd-appexchange/docs/UpgradeLwcLockerSecuritySupport.md">
+	<rule language="xml" class="net.sourceforge.pmd.lang.rule.xpath.XPathRule" name="UpgradeLwcLockerSecuritySupport" message="To enable Lightning Locker, update the API version to version 40 or greater." externalInfoUrl="https://github.com/forcedotcom/sfdx-scanner/blob/dev/pmd-appexchange/docs/UpgradeLwcLockerSecuritySupport.md">
 		<description>Detects use of API versions with Lightning Locker disabled. Use API version 40 or greater.</description>
 		<priority>1</priority>
 		<properties>
-			<property name="version" value="2.0"/>
 			<property name="xpath">
 				<value>
 					<!--
@@ -423,11 +407,10 @@
 	</rule>
 
 	<!--AvoidUnauthorizedApiSessionIdInFlows-->
-	<rule language="xml" class="net.sourceforge.pmd.lang.rule.XPathRule" name="AvoidUnauthorizedApiSessionIdInFlows" message="$Api.Session_ID usage is not approved." externalInfoUrl="https://github.com/forcedotcom/sfdx-scanner/blob/dev/pmd-appexchange/docs/AvoidUnauthorizedApiSessionIdInFlows.md">
+	<rule language="xml" class="net.sourceforge.pmd.lang.rule.xpath.XPathRule" name="AvoidUnauthorizedApiSessionIdInFlows" message="$Api.Session_ID usage is not approved." externalInfoUrl="https://github.com/forcedotcom/sfdx-scanner/blob/dev/pmd-appexchange/docs/AvoidUnauthorizedApiSessionIdInFlows.md">
 		<description>Detects use of session ID in SOAP API calls in flows.</description>
 		<priority>2</priority>
 		<properties>
-			<property name="version" value="2.0"/>
 			<property name="xpath">
 				<value>
 					<![CDATA[
@@ -439,11 +422,10 @@
 	</rule>
 
 	<!--UseHttpsCallbackUrl-->
-	<rule language="xml" class="net.sourceforge.pmd.lang.rule.XPathRule" name="UseHttpsCallbackUrl" message="Update to secure Oauth callback URL over HTTPS." externalInfoUrl="https://github.com/forcedotcom/sfdx-scanner/blob/dev/pmd-appexchange/docs/UseHttpsCallbackUrl.md">
+	<rule language="xml" class="net.sourceforge.pmd.lang.rule.xpath.XPathRule" name="UseHttpsCallbackUrl" message="Update to secure Oauth callback URL over HTTPS." externalInfoUrl="https://github.com/forcedotcom/sfdx-scanner/blob/dev/pmd-appexchange/docs/UseHttpsCallbackUrl.md">
 		<description>Detects instances of an OAuth callback URL that uses HTTP. Use HTTPS instead.</description>
 		<priority>3</priority>
 		<properties>
-			<property name="version" value="2.0"/>
 			<property name="xpath">
 				<value>
 					<![CDATA[
@@ -455,11 +437,10 @@
 	</rule>
 
 	<!--AvoidJsLinksInCustomObject-->
-	<rule language="xml" class="net.sourceforge.pmd.lang.rule.XPathRule" name="AvoidJsLinksInCustomObject" message="Avoid clickable JavaScript-style URLs." externalInfoUrl="https://github.com/forcedotcom/sfdx-scanner/blob/dev/pmd-appexchange/docs/AvoidJsLinksInCustomObject.md">
+	<rule language="xml" class="net.sourceforge.pmd.lang.rule.xpath.XPathRule" name="AvoidJsLinksInCustomObject" message="Avoid clickable JavaScript-style URLs." externalInfoUrl="https://github.com/forcedotcom/sfdx-scanner/blob/dev/pmd-appexchange/docs/AvoidJsLinksInCustomObject.md">
 		<description>Detects instances of JavaScript-style URLs (javascript:) in Salesforce DOM components, such as web links and buttons. Avoid JavaScript-style URLs in managed packages.</description>
 		<priority>1</priority>
 		<properties>
-			<property name="version" value="2.0"/>
 			<property name="xpath">
 				<value>
 					<![CDATA[
@@ -471,11 +452,10 @@
 	</rule>
 
 	<!--AvoidJavaScriptWeblink-->
-	<rule language="xml" externalInfoUrl="https://github.com/forcedotcom/sfdx-scanner/blob/dev/pmd-appexchange/docs/AvoidJavaScriptWeblink.md" class="net.sourceforge.pmd.lang.rule.XPathRule" name="AvoidJavaScriptWeblink" message="Avoid using JavaScript in web links.">
+	<rule language="xml" externalInfoUrl="https://github.com/forcedotcom/sfdx-scanner/blob/dev/pmd-appexchange/docs/AvoidJavaScriptWeblink.md" class="net.sourceforge.pmd.lang.rule.xpath.XPathRule" name="AvoidJavaScriptWeblink" message="Avoid using JavaScript in web links.">
 		<description>Detects use of custom JavaScript actions in web links.</description>
 		<priority>2</priority>
 		<properties>
-			<property name="version" value="2.0"/>
 			<property name="xpath">
 				<value>
 					<![CDATA[
@@ -487,7 +467,7 @@
 	</rule>
 
 	<!--LimitConnectedAppScope-->
-	<rule language="xml" class="net.sourceforge.pmd.lang.rule.XPathRule" name="LimitConnectedAppScope" message="Update the connected app request to limited scope instead of full scope." externalInfoUrl="https://github.com/forcedotcom/sfdx-scanner/blob/dev/pmd-appexchange/docs/LimitConnectedAppScope.md">
+	<rule language="xml" class="net.sourceforge.pmd.lang.rule.xpath.XPathRule" name="LimitConnectedAppScope" message="Update the connected app request to limited scope instead of full scope." externalInfoUrl="https://github.com/forcedotcom/sfdx-scanner/blob/dev/pmd-appexchange/docs/LimitConnectedAppScope.md">
 		<description>Detects if a connected app uses full scope. Explain this use case in your AppExchange security review submission.</description>
 		<priority>3</priority>
 		<!--
@@ -495,7 +475,6 @@
 	   Create an issue for this
 	   -->
 		<properties>
-			<property name="version" value="2.0"/>
 			<property name="xpath">
 				<value>
 					<![CDATA[
@@ -507,11 +486,10 @@
 	</rule>
 
 	<!--AvoidSystemModeInFlows-->
-	<rule language="xml" class="net.sourceforge.pmd.lang.rule.XPathRule" externalInfoUrl="https://github.com/forcedotcom/sfdx-scanner/blob/dev/pmd-appexchange/docs/AvoidSystemModeInFlows.md" name="AvoidSystemModeInFlows" message="Reconfigure to avoid running flows in system mode.">
+	<rule language="xml" class="net.sourceforge.pmd.lang.rule.xpath.XPathRule" externalInfoUrl="https://github.com/forcedotcom/sfdx-scanner/blob/dev/pmd-appexchange/docs/AvoidSystemModeInFlows.md" name="AvoidSystemModeInFlows" message="Reconfigure to avoid running flows in system mode.">
 		<description>Detects where default mode must be used in flows instead of system mode.</description>
 		<priority>3</priority>
 		<properties>
-			<property name="version" value="2.0"/>
 			<property name="xpath">
 				<value>
 					<![CDATA[
@@ -523,11 +501,10 @@
 	</rule>
 
 	<!--AvoidJavaScriptHomePageComponent-->
-	<rule language="xml" externalInfoUrl="https://github.com/forcedotcom/sfdx-scanner/blob/dev/pmd-appexchange/docs/AvoidJavaScriptHomePageComponent.md" class="net.sourceforge.pmd.lang.rule.XPathRule" name="AvoidJavaScriptHomePageComponent" message="Avoid JavaScript in a home page component body.">
+	<rule language="xml" externalInfoUrl="https://github.com/forcedotcom/sfdx-scanner/blob/dev/pmd-appexchange/docs/AvoidJavaScriptHomePageComponent.md" class="net.sourceforge.pmd.lang.rule.xpath.XPathRule" name="AvoidJavaScriptHomePageComponent" message="Avoid JavaScript in a home page component body.">
 		<description>Detects use of custom JavaScript actions in home page components.</description>
 		<priority>2</priority>
 		<properties>
-			<property name="version" value="2.0"/>
 			<property name="xpath">
 				<value>
 					<![CDATA[
@@ -542,11 +519,10 @@
 	</rule>
 
 	<!--ProtectSensitiveData-->
-	<rule language="xml" class="net.sourceforge.pmd.lang.rule.XPathRule" externalInfoUrl="https://github.com/forcedotcom/sfdx-scanner/blob/dev/pmd-appexchange/docs/ProtectSensitiveData.md" name="ProtectSensitiveData" message="To store secrets, use Protected Custom settings or Protected Custom metadata.">
+	<rule language="xml" class="net.sourceforge.pmd.lang.rule.xpath.XPathRule" externalInfoUrl="https://github.com/forcedotcom/sfdx-scanner/blob/dev/pmd-appexchange/docs/ProtectSensitiveData.md" name="ProtectSensitiveData" message="To store secrets, use Protected Custom settings or Protected Custom metadata.">
 		<description>Detects where sensitive data must be stored with Protected Custom metadata or Protected Custom settings.</description>
 		<priority>3</priority>
 		<properties>
-			<property name="version" value="2.0"/>
 			<property name="xpath">
 				<value>
 					<![CDATA[
@@ -572,11 +548,10 @@
 	</rule>
 
 	<!--AvoidJsLinksInWebLinks-->
-	<rule language="xml" class="net.sourceforge.pmd.lang.rule.XPathRule" name="AvoidJsLinksInWebLinks" message="Avoid clickable JavaScript-style URLs." externalInfoUrl="https://github.com/forcedotcom/sfdx-scanner/blob/dev/pmd-appexchange/docs/AvoidJsLinksInWebLinks.md">
+	<rule language="xml" class="net.sourceforge.pmd.lang.rule.xpath.XPathRule" name="AvoidJsLinksInWebLinks" message="Avoid clickable JavaScript-style URLs." externalInfoUrl="https://github.com/forcedotcom/sfdx-scanner/blob/dev/pmd-appexchange/docs/AvoidJsLinksInWebLinks.md">
 		<description>Detects instances of JavaScript-style URLs (javascript:) in Salesforce DOM components, such as web links and buttons. Avoid JavaScript-style URLs in managed packages.</description>
 		<priority>1</priority>
 		<properties>
-			<property name="version" value="2.0"/>
 			<property name="xpath">
 				<value>
 					<![CDATA[
@@ -588,11 +563,10 @@
 	</rule>
 
 	<!--AvoidJavaScriptCustomRule-->
-	<rule language="xml" externalInfoUrl="https://github.com/forcedotcom/sfdx-scanner/blob/dev/pmd-appexchange/docs/AvoidJavaScriptCustomRule.md" class="net.sourceforge.pmd.lang.rule.XPathRule" name="AvoidJavaScriptCustomRule" message="Avoid using JavaScript to execute custom button actions.">
+	<rule language="xml" externalInfoUrl="https://github.com/forcedotcom/sfdx-scanner/blob/dev/pmd-appexchange/docs/AvoidJavaScriptCustomRule.md" class="net.sourceforge.pmd.lang.rule.xpath.XPathRule" name="AvoidJavaScriptCustomRule" message="Avoid using JavaScript to execute custom button actions.">
 		<description>Detects use of custom JavaScript actions in custom rules.</description>
 		<priority>2</priority>
 		<properties>
-			<property name="version" value="2.0"/>
 			<property name="xpath">
 				<value>
 					<![CDATA[
@@ -604,11 +578,10 @@
 	</rule>
 
 	<!--AvoidAuraWithLockerDisabled-->
-	<rule language="xml" class="net.sourceforge.pmd.lang.rule.XPathRule" name="AvoidAuraWithLockerDisabled" message="To enable Lightning Locker, update the apiVersion to version 40 or greater." externalInfoUrl="https://github.com/forcedotcom/sfdx-scanner/blob/dev/pmd-appexchange/docs/AvoidAuraWithLockerDisabled.md">
+	<rule language="xml" class="net.sourceforge.pmd.lang.rule.xpath.XPathRule" name="AvoidAuraWithLockerDisabled" message="To enable Lightning Locker, update the apiVersion to version 40 or greater." externalInfoUrl="https://github.com/forcedotcom/sfdx-scanner/blob/dev/pmd-appexchange/docs/AvoidAuraWithLockerDisabled.md">
 		<description>Detects use of API versions with Lightning Locker disabled in Aura components. Use API version 40 or greater.</description>
 		<priority>1</priority>
 		<properties>
-			<property name="version" value="2.0"/>
 			<property name="xpath">
 				<value>
 					<![CDATA[
