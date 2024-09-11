@@ -5,6 +5,6 @@
     "apexPMD.rulesets": [
         "ruleset.xml"
     ],
-    "apexPMD.pmdBinPath": "",
+    "apexPMD.pmdBinPath": "/Users/rsoesemann/dev/pmd-bin-7.5.0",
     "apexPMD.commandBufferSize": 2
 }
