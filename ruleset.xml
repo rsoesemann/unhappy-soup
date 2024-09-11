@@ -43,11 +43,8 @@
         <exclude name="StdCyclomaticComplexity" />
         <exclude name="CyclomaticComplexity" />
         <exclude name="ExcessiveClassLength" />
-        <exclude name="ExcessiveParameterList" />
         <exclude name="ExcessivePublicCount" />
         <exclude name="TooManyFields" />
-        <exclude name="NcssConstructorCount" />
-        <exclude name="NcssMethodCount" />
         <exclude name="NcssTypeCount" />
     </rule>
 
