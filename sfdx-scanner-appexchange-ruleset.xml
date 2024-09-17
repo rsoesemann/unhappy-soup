@@ -252,23 +252,12 @@
 
     <!--AvoidUnauthorizedGetSessionIdInVisualforce-->
     <rule language="vf" class="net.sourceforge.pmd.lang.rule.xpath.XPathRule" name="AvoidUnauthorizedGetSessionIdInVisualforce" message="Use of session ID with GETSESSIONID is not authorized." externalInfoUrl="https://github.com/forcedotcom/sfdx-scanner/blob/dev/pmd-appexchange/docs/AvoidUnauthorizedGetSessionIdInVisualforce.md">
-        <!--
-            TBD: Add extUrlInfo
-            Add links to OAuth Workflows
-        -->
         <description>Detects use of GETSESSIONID() to retrieve a session ID in Visualforce code.</description>
         <priority>2</priority>
         <properties>
             <property name="version" value="2.0"/>
             <property name="xpath">
                 <value>
-                    <!--
-                        Note: Don't be alarmed by the use of /Arguments
-                        This is done to avoid situations like this:
-                        var a="{!GETSESSIONID}";
-                        juse in case there is controller var that can be exposed this this
-                        Use of /Arguments ensures that this is actually method call to GETSESSIONID
-                    -->
                     <![CDATA[
                     //Expression/Identifier[upper-case(@Image)="GETSESSIONID"]/parent::Expression/Arguments/parent::Expression
                     ]]>
@@ -279,20 +268,12 @@
 
     <!--AvoidUnauthorizedApiSessionIdVisualforce-->
     <rule language="vf" class="net.sourceforge.pmd.lang.rule.xpath.XPathRule" name="AvoidUnauthorizedApiSessionIdVisualforce" message="Retrieval of session ID using API.Session_ID is not authorized." externalInfoUrl="https://github.com/forcedotcom/sfdx-scanner/blob/dev/pmd-appexchange/docs/AvoidUnauthorizedApiSessionIdVisualforce.md">
-        <!--
-        TBD: Add extUrlInfo
-        Add links to OAuth Workflows
-        -->
         <description>Detects use of Api.Session_ID to retrieve a session ID in Visualforce code.</description>
         <priority>3</priority>
         <properties>
             <property name="version" value="2.0"/>
             <property name="xpath">
                 <value>
-                    <!--
-                    Ideally should use ancestor::Expression instead of ../..
-                        But, not sure if there is an ancestor somewhere that is also an Expression
-                    -->
                     <![CDATA[
                     //Expression/Identifier[upper-case(@Image)="$API"]/parent::Expression/
                     DotExpression/Identifier[upper-case(@Image)="SESSION_ID"]/parent::DotExpression/parent::Expression 
@@ -301,6 +282,38 @@
             </property>
         </properties>
     </rule>
+
+	<!--AvoidUnauthorizedGetSessionIdInVisualforce-->
+	<rule language="visualforce" class="net.sourceforge.pmd.lang.rule.xpath.XPathRule" name="AvoidUnauthorizedGetSessionIdInVisualforce" message="Use of session ID with GETSESSIONID is not authorized." externalInfoUrl="https://github.com/forcedotcom/sfdx-scanner/blob/dev/pmd-appexchange/docs/AvoidUnauthorizedGetSessionIdInVisualforce.md">
+		<description>Detects use of GETSESSIONID() to retrieve a session ID in Visualforce code.</description>
+		<priority>2</priority>
+		<properties>
+			<property name="xpath">
+				<value>
+				<![CDATA[
+				//Expression/Identifier[upper-case(@Image)="GETSESSIONID"]/parent::Expression/Arguments/parent::Expression
+				]]>																	
+				</value>
+			</property>
+		</properties>
+	</rule>
+
+	<!--AvoidUnauthorizedApiSessionIdVisualforce-->
+	<rule language="visualforce" class="net.sourceforge.pmd.lang.rule.xpath.XPathRule" name="AvoidUnauthorizedApiSessionIdVisualforce" message="Retrieval of session ID using API.Session_ID is not authorized." externalInfoUrl="https://github.com/forcedotcom/sfdx-scanner/blob/dev/pmd-appexchange/docs/AvoidUnauthorizedApiSessionIdVisualforce.md">
+		<description>Detects use of Api.Session_ID to retrieve a session ID in Visualforce code.</description>
+		<priority>3</priority>
+		<properties>
+			<property name="xpath">
+				<value>
+					<![CDATA[
+					//Expression/Identifier[upper-case(@Image)="$API"]/parent::Expression/
+					DotExpression/Identifier[upper-case(@Image)="SESSION_ID"]/parent::DotExpression/parent::Expression 
+					]]>																	
+				</value>
+			</property>
+		</properties>
+	</rule>
+
 
     <!-- JAVASCRIPT -->
 
