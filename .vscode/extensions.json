@@ -1,0 +1,6 @@
+{
+    "recommendations": [
+        "chuckjonas.apex-pmd",
+        "salesforce.sfdx-code-analyzer-vscode"
+    ]
+}
