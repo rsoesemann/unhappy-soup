@@ -91,6 +91,15 @@
 
     <!-- Apex Rules -->
 
+    <rule name="CheckIfProperFalsePositive" language="apex" message="Only False Positives can be supressed and need a proper comment." class="net.sourceforge.pmd.lang.rule.xpath.XPathRule">
+        <priority>5</priority>
+        <properties>
+            <property name="xpath"><value><![CDATA[
+                //Annotation[@Image='SuppressWarnings']/AnnotationParameter[starts-with(@Value, 'PMD.')]
+            ]]></value></property>
+        </properties>
+    </rule>
+    
     <rule name="CommentsOftenExcuseForBadCodeAndTests" language="apex" message="Formal class or method comments are often an excuse for bad code and tests" class="net.sourceforge.pmd.lang.rule.xpath.XPathRule">
         <priority>3</priority>
         <properties>
