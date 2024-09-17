@@ -52,16 +52,7 @@
         <priority>2</priority>   
 
         <exclude name="AvoidNonRestrictiveQueries" />  <!-- Stupid rule, sorry but no -->
-        <exclude name="AvoidDebugStatements" />  <!-- Improved by AvoidDebugStatements below --> 
-    </rule>
-
-    <rule name="AvoidDebugStatements" language="apex" message="Avoid leaving System.debug() statments in code as they negativly influence performance." class="net.sourceforge.pmd.lang.rule.xpath.XPathRule">
-        <priority>2</priority>   
-        <properties>
-            <property name="xpath"><value><![CDATA[
-                //MethodCallExpression[lower-case(@FullMethodName)='system.debug'][count(*)=2]
-            ]]></value></property>
-        </properties>
+        <exclude name="AvoidDebugStatements" />  <!-- Improved by DebugsShouldUseLoggingLevel --> 
     </rule>
 
     <rule ref="category/apex/codestyle.xml">      
@@ -145,7 +136,8 @@
             ]]></value></property>
         </properties>
     </rule>
-<!-- Most people find this to controversial ;-) 
+
+<!-- Most people find this too controversial ;-) 
     <rule name="DeclareWhatYouReturnFirstAndCallItResult" language="apex" message="What you return call it result and declare it in the first line" class="net.sourceforge.pmd.lang.rule.xpath.XPathRule">
         <priority>3</priority>
         <properties>

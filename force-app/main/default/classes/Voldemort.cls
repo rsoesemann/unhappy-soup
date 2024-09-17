@@ -37,6 +37,11 @@ global class Voldemort {
 	}
 
 
+	public static void pmdAppExchange() {
+		System.setPassword('userId', 'password');
+	}
+
+
 	public static void crudFlsOnQueries(String id, String email) {
 		List<Contact> c = [SELECT Id FROM Contact];
 		c = [SELECT Id FROM Contact WITH USER_MODE];
