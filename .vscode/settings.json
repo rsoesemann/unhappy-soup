@@ -1,10 +1,16 @@
 {
     "sarif-viewer.connectToGithubCodeScanning": "off",
     "cody.codebase": "https://github.com/rsoesemann/unhappy-soup",
-    "codeAnalyzer.pMD.customConfigFile": "ruleset.xml",
+    "codeAnalyzer.pMD.customConfigFile": "",
     "apexPMD.rulesets": [
         "ruleset.xml"
     ],
-    "apexPMD.pmdBinPath": "/Users/rsoesemann/dev/pmd-bin-7.5.0",
-    "apexPMD.commandBufferSize": 2
+    "apexPMD.pmdBinPath": "/Users/rsoesemann/dev/pmd-bin-7.5.0/",
+    "apexPMD.commandBufferSize": 2,
+    "apexPMD.runOnFileOpen": true,
+    "apexPMD.runOnFileChange": false,
+    "codeAnalyzer.apexGuru.enabled": true,
+    "codeAnalyzer.analyzeOnOpen.enabled": true,
+    "codeAnalyzer.normalizeSeverity.enabled": true,
+    "codeAnalyzer.scanner.engines": "retire-js,eslint-lwc"
 }
