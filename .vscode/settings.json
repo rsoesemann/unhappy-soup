@@ -12,5 +12,5 @@
     "codeAnalyzer.apexGuru.enabled": true,
     "codeAnalyzer.analyzeOnOpen.enabled": true,
     "codeAnalyzer.normalizeSeverity.enabled": true,
-    "codeAnalyzer.scanner.engines": "pmd-appexchange,retire-js,eslint-lwc"
+    "codeAnalyzer.scanner.engines": "pmd-appexchange,retire-js,eslint-lwc,eslint"
 }

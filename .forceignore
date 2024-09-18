@@ -16,3 +16,6 @@ package.xml
 **/__tests__/**
 
 AppSwitcher.appMenu
+**/tsconfig.json
+
+**/*.ts
