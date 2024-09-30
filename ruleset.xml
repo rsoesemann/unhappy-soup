@@ -148,22 +148,6 @@
         ]]></value></property></properties>
     </rule>
 
-    <rule name="NullValueCheckBeforeEmptyCheck" language="apex" message="Apex code must check != null before .isEmpty()" class="net.sourceforge.pmd.lang.rule.xpath.XPathRule">
-        <priority>2</priority>
-        <properties><property name="xpath"><value><![CDATA[
-
-            //BooleanExpression[@Op="&&"][
-                child::*[2][
-                self::BooleanExpression[@Op="!="][
-                    child::*[1][self::VariableExpression] and
-                    child::*[2][self::LiteralExpression[@LiteralType="NULL"]]
-                ]
-                ]
-            ]
-
-        ]]></value></property></properties>
-    </rule>
-
     <rule name="CheckIfProperFalsePositive" language="apex" message="Only False Positives can be supressed and need a proper comment." class="net.sourceforge.pmd.lang.rule.xpath.XPathRule">
         <priority>5</priority>
         <properties><property name="xpath"><value><![CDATA[
